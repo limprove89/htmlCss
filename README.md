@@ -206,5 +206,160 @@ ___
 #### \<del>, \<ins>
 - 삭제된 텍스트의 범위를 지정 / 새로 추가된 텍스크의 범위를 지정
 - 중간선으로 삭제를 표시하며, 밑줄로 추가를 표시한다.
+___
 
+### 멀티미디어
 
+#### \<img>
+- 이미지를 삽입하는 엘리먼트
+- width와 sizes 사용 시 width가 적용됨
+
+속성 | 의미 | 값 
+--- | --- | ---
+src | 이미지 URL | URL
+width | 이미지의 가로너비 |
+height | 이미지의 세로너비 | 
+srcset | 브라우저에게 제시할 이미지 URL과 원본 크기의 목록 정의 | w, x
+sizes | 미디어 조건과 해당 조건일 떄 이미지 최적화 크기의 목록 정의 | 
+
+#### \<audio>, \<video>
+- 소리(mp3), 동영상(mp4) 등의 컨텐츠를 삽입
+- 두 엘리먼트는 속성이 비슷함.
+- autoplay가 지정된 경우, preload는 무시됨.
+- 코드 작성 시 controls 누락 시 화면 상 표시가 안됨.
+
+속성 | 의미 | 값 | 기본값
+--- | --- | --- | ---
+autoplay | 준비되면 바로 재생 | boolean | 
+controls | 제어 메뉴를 표시 | boolean | 
+loop | 재생이 끝나면 다시 처음부터 재생 | boolean | 
+preload | 페이지가 로드될 때 파일을 로드할지 지정 | none,metadata,auto | metadata
+src | 컨텐츠 URL | URL | 
+muted | 음소거 여부 | boolean | 
+
+#### \<figure>, \<figcaption>
+- \<figure>는 이미지나 삽화, 도표 등의 영역 설정
+- \<figcaption>은 \<figure>에 포함되어 이미지나 삽화 등의 설명을 표시.
+
+```HTML
+<figure>
+    <img src="milk.jpg" alt="milk">
+    <figcaption>milk is very ...</figcaption>
+</figure>
+```
+
+___
+### 내장 컨텐츠
+
+#### \<iframe>
+ - 다른 HTML 페이지를 현재 페이지에 삽입. (중첩된 브라우저 컨텍스트(프레임)를 표시)
+ - 단순히 동영상을 불러오는 엘리먼트는 아님.
+
+속성 | 의미 | 값 | 기본값
+--- | --- | --- | ---
+name | 프레임의 이름 | | 
+sre | 포함할 문서의 URL | URL | 
+width | 프레임의 가로 너비 | | 
+height | 프레임의 세로 너비 | | 
+allowfullscreen | 전체 화면 모드 사용 여부 | boolean | 
+frameborder | 프레임 테두리 사용 여부 | 0, 1 | 1
+sandbox | 보안을 위한 읽기 전용으로 삽입 | boolean or allow-form, allow-scripts, allow-some-origin | 
+
+#### \<canvas>
+- Canvas API, WebGL API를 사용하여 그래픽이나 애니메이션을 랜더링.
+
+속성 | 의미 
+--- | ---
+width | 캔버스의 가로 너비
+height | 캔버스의 세로 너비
+
+___
+### 스크립트
+#### \<script>
+
+- 스크립트 코드를 문서에 포함하거나 참조 (외부 스크립트)
+
+속성 | 의미 | 값 | 특징 
+--- | --- | --- | ---
+async | 스크립트의 비동기적 실행 여부 | boolean | src 속성 필수
+defer | 문서 파싱 후 작동 여부 | boolean | src 속성 필수
+src | 참조할 외부 스크립트 URL | URL | 포함된 스크립트 코드는 무시됨
+type | MINE 타입 | text/javascript(기본값) | 통상적으로 생략됨
+
+#### \<noscript>
+- 스크립트를 지원하지 않는 경우에 삽입할 HTML을 정의
+- 환경상 스크립트의 로드가 되지 않을 경우 내용을 알려주는 용도
+
+___
+### 표 컨텐츠
+
+- 전체적인 예시 참조 
+
+```HTML
+<table>
+  <caption>Fruits</caption>
+  <colgroup>
+    <col span="2" style="background-color: yellowgreen;">
+    <col style="background-color: tomato;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>F123A</td>
+      <td>Apple</td>
+      <td>$22</td>
+    </tr>
+    <tr>
+      <td>F098B</td>
+      <td>Banana</td>
+      <td>$19</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+#### \<table>, \<tr>, \<th>, \<td>
+- 데이터 표 (\<table>)의 행(줄 / \<tr>)과 열( 칸,셀 / \<th>, \<td> )을 생성
+- (Table row, Table header, Table data)
+
+#### \<th>
+- 머리글 칸을 지정
+
+속성 | 의미 | 값 | 기본값 
+--- | --- | --- | ---
+abbr | 열에 대한 간단한 설명 | | 
+headers | 관련된 하나 이상의 다른 머리글 칸 id 속성 값 | | 
+colspan | 확장(병합)하려는 열의 수 | | 1 
+rowspan | 확장(병합)히려는 행의 수 | | 1 
+scope | 자신이 누구의 '머리글 칸' 인지 명시 | col, colgroup, row, rowgroup,auto | auto
+
+#### \<td>
+- 일반 칸을 지정 
+
+속성 | 의미 | 값 | 기본값 
+--- | --- | --- | ---
+headers | 관련된 하나 이상의 다른 머리글 칸 id 속성 값 | | 
+colspan | 확장(병합)하려는 열의 수 | | 1 
+rowspan | 확장(병합)히려는 행의 수 | | 1 
+
+#### \<caption>
+- 표의 제목을 설정
+    - 열리는 TABLE 태그 바로 다음에 작성해야 함 (작성 후 바로 닫기)
+    - \<table> 당 하나의 \<caption>만 사용 가능.
+
+#### \<colgroup>, \<col>
+- 표의 열들을 공통적으로 정의하는 칼럼과 그의 집합
+
+속성 | 의미 | 값 | 기본값 
+--- | --- | --- | ---
+span | 연속되는 열 수 | 숫자 | 1
+
+#### \<thead>, \<tbody>, \<tfoot>
+- 표의 머리글, 본문, 바닥글을 지정한다
+    - 기본적으로 테이블의 레이아웃에 영향을 주지 않음
