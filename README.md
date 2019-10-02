@@ -258,7 +258,7 @@ ___
 속성 | 의미 | 값 | 기본값
 --- | --- | --- | ---
 name | 프레임의 이름 | | 
-sre | 포함할 문서의 URL | URL | 
+src | 포함할 문서의 URL | URL | 
 width | 프레임의 가로 너비 | | 
 height | 프레임의 세로 너비 | | 
 allowfullscreen | 전체 화면 모드 사용 여부 | boolean | 
