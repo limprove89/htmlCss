@@ -363,3 +363,81 @@ span | 연속되는 열 수 | 숫자 | 1
 #### \<thead>, \<tbody>, \<tfoot>
 - 표의 머리글, 본문, 바닥글을 지정한다
     - 기본적으로 테이블의 레이아웃에 영향을 주지 않음
+___    
+### 양식
+
+#### \<form>
+- 웹 서버에 정보를 제출하기 위한 양식 범위를 정의
+  - \<form>이 다른 <form>을 자식 요소로 포함할 수 없음
+  
+  속성 | 의미 | 값 | 기본값
+  --- | --- | --- | ---
+  action | 전송한 정보를 처리할 웹 페이지 URL | URL | 
+  autocomplete | 사용자가 이전에 입력한 값으로 자동 완성 기능을 사용할 것인지 여부 | on, off | on
+  method | 서버로 전송할 HTTP 방식 | GET, POST | GET
+  name | 고유한 양식의 이름 | | 
+  novalidate | 서버로 전송시 양식 데이터의 유효성을 검사하지 않도록 지정 | |
+  target | 서버로 전송 후 응답받을 방식을 지정 | _self, _blank | _self
+  
+#### \<input>
+- 사용자에게 입력 받을 데이터 양식
+  
+  속성 | 의미 | 값 | 기본값 | 특징
+  --- | --- | --- | --- | ---
+  autocomplete | 사용자가 이전에 입력한 값으로 자동 완성 기능을 사용할 것인지 여부 | on, off | on | 
+  autofocus | 페이지가 로드될 때 자동으로 포커스 | boolean | | 문서 내 고유해야 함
+  checked | 양식이 선택되었음을 표시 | boolean | | type 속성 값이 radio, checkbox 일 경우만
+  disabled | 양식을 비활성화 | boolean | | 
+  form | form의 id 속성 값 | | 해당 form의 후손이 아닐 경우만
+  
+  
+- 이외의 많은 속성들이 존재한다. 
+
+#### 데이터 종류의 값
+- type 속성에 입력할 수 있는 값의 목록
+  - \<input> 속성에 입력할 수 있는 값의 목록
+  
+  값 | 데이터 종류 | 특징
+  --- | --- | ---
+  button | 일반 버튼 | \<button>으로 사용
+  checkbox | 체크 박스 | 
+  color | 색상 | IE 지원 불가
+  email | 이메일 | 
+  file | 파일 | 
+  number | 숫자 | 
+  password | 비밀번호 | 가려지는 양식
+  radio | 라디오 버튼 | 같은 name 속성 그룹 내 하나만 선택 가능
+  tel | 전화 번호 | 
+  submit | 제출 버튼 | 해당 \<form> 범위 내 고유한 양식
+  
+#### \<label>
+- 라벨 가능 요소 (lavelable)의 제목(caption)
+  - for 속성으로 라벨 가능 요소를 참조하거나 포함
+  - 라벨 가능 요소 : \<botton>,\<input>, \<progress>, \<select>, \<textarea>
+  
+속성 | 의미
+--- | ---
+for | 참조할 라벨 가능 요소의 id 속성 값
+
+#### \<botton>
+- 선택 가능한 버튼을 지정
+
+속성 | 의미 | 값 | 특징
+--- | --- | --- | ---
+autofocus | 페이지가 로드될 때 자동으로 포커스 | boolean | 문서 내 고유해야 함
+disabled | 버튼을 비활성화 | boolean | 
+form | \<form>의 id 속성 값 | | 해당 \<form>의 후손이 아닐 경우만
+name | 폼 데이터와 함께 전송되는 버튼의 이름 | | 
+type | 버튼의 타입 | button, reset, submit
+
+#### \<textarea>
+- 여러 줄의 일반 텍스트 양식
+
+속성 | 의미 | 값 | 기본값 | 특징
+--- | --- | --- | --- | ---
+autocomplete | 사용자가 이전에 입력한 값으로 자동 완성 기능을 사용할 것인지 여부 | on, off | on | 
+autofocus | 페이지가 로드될 때 자동으로 포커스 | boolean | | 문서 내 고유해야 함
+disabled | 양식을 비활성화 | boolean | | 
+form | \<form>의 id 속성 값 | | 해당 \<form>의 후손이 아닐 경우만
+maxlength | 입력 가능한 최대 문자 수 
+    
