@@ -393,7 +393,9 @@ ___
   
 - 이외의 많은 속성들이 존재한다. 
 
-#### 데이터 종류의 값
+---
+
+### 데이터 종류의 값
 - type 속성에 입력할 수 있는 값의 목록
   - \<input> 속성에 입력할 수 있는 값의 목록
   
@@ -439,5 +441,196 @@ autocomplete | 사용자가 이전에 입력한 값으로 자동 완성 기능�
 autofocus | 페이지가 로드될 때 자동으로 포커스 | boolean | | 문서 내 고유해야 함
 disabled | 양식을 비활성화 | boolean | | 
 form | \<form>의 id 속성 값 | | 해당 \<form>의 후손이 아닐 경우만
-maxlength | 입력 가능한 최대 문자 수 
+maxlength | 입력 가능한 최대 문자 수
+
+#### \<fieldset>, \<legend>
+- 같은 목적의 양식을 그룹화(fieldset) 하여 제목(legend)을 지정
+
+```HTML
+<form>
+  <fieldset>
+    <legend>Coffee Size</legend>
+    <label>
+        <input type="radio" name="size" value="tall" />
+        Tall
+    </label>
+    <label>
+        <input type="radio" name="size" value="grande" />
+        Grande
+    </label>
+    <label>
+        <input type="radio" name="size" value="venti" />
+        Venti
+    </label>
+  </fieldset>
+</form>
+```
+\<fieldset>
+- 같은 목적의 양식을 그룹화
+
+속성 | 의미 | 값
+--- | --- | 
+disabled | 그룹 내 모든 양식 요소를 비활성화 | boolean
+form | 그룹이 속할 하나 이상의 form 의 id 속성 값 | 
+name | 그룸의 이름 | 
+
+#### \<select>, \<datalist>, \<optgroup>, \<option>
+- 옵션 (\<option>, \<optgroup>)의 선택 메뉴 (\<select>)나 자동완성 (\<datalist>)을 제공
+
+```HTML
+<select>
+  <optgroup label="Coffee">
+    <option>Americano</option>
+    <option>Caffe Mocha</option>
+    <option label="Cappuccino" value="Cappuccino"></option>
+  </optgroup>
+  <optgroup label="Latte" disabled>
+    <option>Caffe Latte</option>
+    <option>Vanilla Latte</option>
+  </optgroup>
+  <optgroup label="Smoothie">
+    <option>Plain</option>
+    <option>Strawberry</option>
+    <option>Banana</option>
+    <option>Mango</option>
+  </optgroup>
+</select>
+```
+
+#### \<select>
+- 옵션을 선택하는 메뉴
+
+속성 | 의미 | 값 | 기본값
+--- | --- | --- | ---
+autocomplete | 사용자가 이전에 입력한 값으로 자동 완성 기능을 사용할 것인지 여부 | on, off | on
+disabled | 선택 메뉴를 비활성화 | boolean | 
+form | 선택 메뉴가 속할 하나 이상의 \<form>의 id 속성 값 | | 
+multiple | 다중 선택 여부 | boolean | 
+name | 선택 메뉴의 이름 | | 
+size | 한 번에 볼 수 있는 행의 개수 | number | 0 (1과 같음)
+
+#### \<datalist>
+- \<input>에 미리 정의된 옵션을 지정하여 자동완성 기능을 제공하는 데 사용
+  - \<input>의 list 속성 바인딩
+  - \<option>을 포함하여 정의된 옵션을 지정
+
+```HTML
+<input type="text" list="fruits">
+
+<datalist id="fruits">
+  <option>Apple</option>
+  <option>Orange</option>
+  <option>Banana</option>
+  <option>Mango</option>
+  <option>Fineapple</option>
+</datalist>
+```
+
+#### \<optgroup>
+- \<option>을 그룹화
+
+속성 | 의미 | 값
+--- | --- | ---
+label | (필수)옵션 그룹의 이름 | 
+disabled | 옵션 그룹을 비활성화 | boolean
+
+#### \<option>
+- 선택 메뉴 (\<select>)나 자동완성(\<datalist>)에서 사용될 욥션
+  - 선택적 빈 태그로 사용
+
+속성 | 의미 | 값 | 특성
+--- | --- | --- | ---
+disabled | 옵션을 비활성화 | boolean | 
+label | 표시될 옵션의 제목 | | 생략되면 포함된 텍스트를 표시
+selected | 옵션이 선택되었음을 표시 | boolean | 
+value | 양식으로 제출될 값 | | 생략되면 포함된 텍스트를 값으로 사용
+
+#### \<progress>
+- 작업의 완료 진행률을 표시
+
+속성 | 의미 | 값 | 특징
+--- | --- | --- | ---
+max | 작업의 총량 | number | 
+value | 작업의 진행량 | number | max 속성을 생략할 경우 0~1 사이의 숫자여야 함
+
+### 전역 속성 (global Attributes)
+- 모든 HTML 요소에서 공통적으로 사용 가능한 속성.
+
+#### class
+- 공백으로 구분된 요소의 별칭을 지정
+- CSS 혹은 JavaScript의 요소 선택기를 통해서 요소를 선택하거나 접근한다.
+
+#### id
+- 문서에서 고유한 식별자를 정의
+- CSS 혹은 JavaScript의 요소 선택기를 통해서 요소를 선택하거나 접근한다.
+
+#### style
+- 요소에 적용할 CSS를 선언
+
+#### title
+- 요소의 정보(설명)을 지정
+
+#### lang
+- 요소의 언어를 지정
+
+#### data-*
+- 사용자 정의 데이터 속성을 지정
+- HTML에 JavaScript에서 이용할 수 있는 데이터를 저장하는 용도로 사용.
+- HTML에서는 -문법을 선호, JavaScript에서는 Camel표기법을 선호
+
+```HTML
+<!-- data-custom-data-attributes -->
+<div id="me" data-my-name="Heropy" data-my-age="851">Heropy</div>
+```
+
+```javascript
+// dataset.customDataAttributes
+const $me = document.getElementById('me');
+console.log($me.dataset.myName); // "Heropy"
+console.log($me.dataset.myAge); // "851"
+```
+
+#### draggable
+- 요소가 Drag and Drop API를 사용 가능한지 여부를 지정.
+- 생략 하였을 경우에는 true나 false가 아닌 auto로 설정된다.
+
+#### hidden
+- 요소를 숨김
+
+```html
+<form id="hidden-form" action="/form-action" hidden>
+  <!-- 숨겨진 양식들.. -->
+</form>
+<button form="hidden-form" type="submit">전송</button>
+```
+
+#### tabindex
+- Tab 키를 이용해 요소를 순차적으로 포커스 탐색할 순서를 지정
+  - 대화형 컨텐츠는 기본적으로 코드 순서대로 탭 순서가 지정됨
+  - 비대화형 컨텐츠에 tabindex="0"을 지정하여 대화형 컨텐츠와 같이 탭 순서를 사용
+  - tabindex="-1"을 통해 포커스는 가능하지만 탭 순서에서 제외 가능
+  - tabindex="1" 이상의 양수 값은 논리적 흐름을 방해하기 때문에 사용을 추천하지 않음!
+
+___
+
+### 절대 경로와 상대 경로
+
+#### 절대경로
+- / 이전 https://xxx.xx.com 까지 생략 가능 
+
+#### 상대경로
+- ./  -> 현재 경로
+- ../ -> 이전 경로
+
+___
+### 그 외 필요한 문법
+
+#### 주석
+- 개발자가 개발 과정에서 코드에 관한 설명을 부여할 때 사용.
+- 협업 및 개발자 본인이 훗날 코드 리뷰 시 이해가 쉽도록 기입하여야 한다.
+- 거의 모든 에디터에서는 언어에 관계없이 'cmd' + '/' 으로 단축키 설정 되어 있다.
+
+#### 엔티티
+- HTML에서 특수기호가 화면 상 출력이 될 수 있는 기호의 코드화
+- &nbps;(공백) &lt;(왼쪽꺽쇠) %gt;(오른쪽꺽쇠) 등이 있다.
 
