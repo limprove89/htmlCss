@@ -440,4 +440,4 @@ autofocus | 페이지가 로드될 때 자동으로 포커스 | boolean | | 문�
 disabled | 양식을 비활성화 | boolean | | 
 form | \<form>의 id 속성 값 | | 해당 \<form>의 후손이 아닐 경우만
 maxlength | 입력 가능한 최대 문자 수 
-    
+
