@@ -110,3 +110,251 @@ p를 만족하는 첫번째 자식요소로써 해석해야 한다.
 ___
 
 #### 가상 요소 선택자
+- ::before : 엘리먼트 앞부분에 오는 태그 선택자
+- ::after : 엘리먼트 뒷부분에 오는 태그 선택자
+>CSS 속성 content를 입력해주어야 동작한다.
+
+```HTML
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+```
+```CSS
+ul li::before {
+    content: "";
+    width: 30px;
+}
+```
+___
+#### 속성 선택자 [Attr], [attr=value]
+- 속성 attr을 포함한 요소 선택
+
+>HTML의 속성은 Attribute, CSS의 속성은 Property라고 한다. 속성 선택자는 HTML 속성을 선택하는 역활의 선택자이다.
+
+```HTML
+<input type="text" value="ID" disabled>
+```
+```CSS
+[disabled]{
+    opacity: 0.2;
+}
+
+[type="text"]{
+    opacity: 0.2;
+}
+```
+
+#### 속성 선택자 [Attr^=value], [attr$=value]
+- 속성 attr을 포함하며 속성 값이 value로 시작하는/끝나는 요소 선택
+
+```HTML
+<button class="btn-success">success</button>
+<button class="btn-danger">danger</button>
+```
+```CSS
+[class^="btn-"]{
+    font-weight: bold;
+}
+[class$="danger"]{
+    color : red;
+}
+```
+
+___
+
+#### CSS 상속 (inheritance)
+- 보통 글자를 다루는 속성들이 상속이 된다.  
+- font
+    - font-size
+    - font-weight
+    - font-style
+    - line-height
+    - font-family
+- color
+- text-align
+- letter-spacing
+- etc...
+
+> 강제 상속 : 상속되지 않는 속성 또한 속성의 값으로 inherit;를 입력하면 상속 가능하다. 이 경우 자식을 제외한 후손에는 적용되지 않으며, 모든 속성이 다 강제 상속이 적용되는 것은 아니다.
+
+#### 우선순위
+- 같은 요소가 여러 선언의 대상이 될 경우, 어떤 선언의 CSS 속성(property)을 우선 적용할지 결정하는 방법
+
+1. 명시도 점수가 높은 선언이 우선 (명시도)
+2. 점수가 같은 경우, 가장 마지막에 해석되는 선언이 우선 (선언 순서)
+3. 명시도는 "상속"규칙보다 우선 (중요도)
+4. !important가 적용된 선언 방식이 다른 모든 방식보다 우선 (중요도)
+
+> !important : 무한대의 점수  
+inline 선언 방식 : 1000pt  
+id seletor : 100pt  
+class selector : 10pt  
+type(tag) selector : 1pt  
+\*(universal) selector : 0pt  
+CSS inheritance : 0pt
+
+___
+
+## CSS reset
+- 브라우저에서 제공하는 스타일은 모두 통일화 되어있지 않다.  
+그렇기 때문에 CSS 초기화가 필요하다.  
+가장 편하게 사용하는 방법으로는 reset.css 파일을 링크해서 사용하는 방법!
+
+> 초기화 CDN 파일은 link css 파일 중 최상단에 위치하도록 한다.
+
+### Emmet 문법
+- HTML/CSS를 더욱 편하게 작성할 수 있는 문법.
+- CSS 선택자를 작성 후 Tab
+- 대다수의 코드 에디터에 내장되어 있다.
+___
+## CSS 단위
+
+#### px, %
+- px는 상대적이지만 고정값으로 이해하는것이 좋다.
+- %는 부모 요소를 기준으로 수치가 계산되어 적용된다.
+
+#### em, rem
+- em은 현재 자기 자신이 가진 폰트사이즈에 영향을 받는다. (상속받은 자신의 폰트사이즈!)
+- rem은 최상위 요소 HTML이 가진 폰트사이즈에 영향을 받는다.
+
+#### vw, vh
+- vw(뷰포트)는 화면상 보이는 영역의 가로 사이즈 (100%를 기준으로 한다. 절반을 선택하려면 50vw;)
+- vh는 화면상 보이는 영역의 세로 사이즈
+
+#### vmin, vmax
+- vmin은 뷰포트의 가로/세로 중 더욱 짧은 쪽을 기준으로 계산한다.
+- vmax는 뷰포트의 가로/세로 중 긴 쪽을 기준으로 계산한다.
+
+### CSS / 속성 - 박스 모델
+- 기본적으로 속성값은 기본값인 auto;로 설정된다.
+
+#### width, height
+- 속성에 가로/세로를 나타낸다.
+
+값 | 의미 | 기본값
+--- | --- | ---
+auto | 브라우저가 너비를 계산 | auto
+단위 | px, em, cm 등 단위로 지정 | 
+
+#### max-width, min-width, max-height, min-height
+- 요소의 최대/최소 가로/세로 너비
+
+#### margin
+- 요소의 '외부(바깥)여백'을 지정(단축속성/개별속성)
+- 음수값을 사용할 수 있습니다.
+- % 지정시 부모 요소의 가로 사이즈의 % 값이 설정된다.
+
+#### collapse (마진 중복)
+- 마진의 특정 값들이 '중복'되어 합쳐지는 현상
+1. 형제 요소들의 margin-top와 margin-bottom이 만났을 떄
+2. 부모 요소의 margin-top과 자식 요소의 margin-top이 만났을 때
+3. 부모 요소의 margin-bottom과 자식 요소의 margin-bottom이 만났을 때
+
+마진 중복 계산법
+- 마진 중복 현상이 발생시, 중복 값을 계산하는 방법
+
+조건 | 요소A 마진 | 요소B 마진 | 계산법 | 중복값
+--- | --- | --- | --- | ---
+둘 다 양수 | 30px | 10px | 더 큰 값으로 중복 | 30px
+둘 다 음수 | -30px | -10px | 더 작은 값으로 중복 | -30px
+각 각 양수/음수 | -30px | 10px | -30 + 10= -20 | -20px
+
+#### padding
+- 요소의 '내부(안쪽) 여백'을 지정
+
+#### 크기 증가
+- 추가된 padding 값만큼 요소의 크기가 커지는 현상
+- 하지만 box-sizing: border-box; 설정 시 크기가 커지지 않고 자동 계산 된다!
+
+#### border
+- 요소의 테두리 선을 지정
+- 두께/종류/색상을 지정
+- border 는 요소에 크기에 추가가 된다. 따라서 box-sizing: border-box;를 적용 시 크기가 커지지 않고 자동 계산 된다!
+
+#### box-sizing
+- 요소의 크기 계산 기준을 지정
+- content-box (기본값) / border-box가 존재한다.
+
+#### display
+- 요소의 박스 타입(유형)을 설정
+- block / inline / inline-block / table / flex / none 등
+
+#### overflow
+- 요소의 크기 이상으로 내용(자식요소)이 넘쳤을 때, 내용의 보여짐을 제어한다.
+- visible(기본값) / hidden / scroll / auto 등
+
+#### opacity
+- 요소의 투명도를 지정
+- 숫자로 0과 1사이의 숫자를 지정
+- opacity: 0;은 존재하지만 보여지지 않는 것 / display:none;은 존재하지 않는 것
+___
+### CSS / 속성 - 폰트
+
+### font
+- 글자 관련 속성들을 지정 (단축속성)
+- font: 기울기 두께 크기(필수) / 줄높이 글꼴(필수);
+
+#### font-style
+- 글자의 스타일(기울기)를 지정 
+- normal / italic / oblique
+
+#### font-weight
+- 글자의 두께(가중치)를 지정
+- normal / bold / bolder(상위 요소보다 더 두껍게) / lighter(상위 요소보다 더 얇게) / 숫자
+- font-weight는 100 단위로 100~900까지 존재한다.
+
+#### font-size
+- 글자의 크기를 지정
+- 단위 / % / xx-small / x-small / small / medium / large / x-large / xx-large / smaller / larger
+
+#### line-height
+- 줄 높이(줄 간격)을 지정
+- normal / 숫자(요소 자체 글꼴 크기의 배수로 지정) / 단위 / %
+
+#### font-family
+- 글꼴(서체)를 지정
+- 글꼴 이름(서체 후보)목록을 지정
+- font-family: [글꼴후보1, 글꼴후보2, ...], 글꼴계열(필수);
+
+계열 | 의미 
+--- | ---
+serif | 바탕체 계열
+san-serif | 고딕체 계열
+monospace | 고정너비 (가로폭이 동등한) 글꼴 계열
+cursive | 필기체 계열
+fantasy | 장식 글꼴 계열
+
+#### color / 색상표현법
+- 문자의 색상을 지정
+
+표현 | 의미 | 예시
+--- | --- | ---
+색상이름 | 브라우저에서 제공하는 색상의 이름 | red, blue
+Hex 색상코드 | 16진수 색상 | #000000
+RGB | 빛의 삼원색 | rgb(255, 255, 255)
+RGBA | 빛의 삼원색, 투명도 | rgb(255, 255, 255, .5)
+HSL | 색상,채도,명도 | hsl(120, 100%, 50%)
+HSLA | 색상,채도,명도,투명도 | hsla(120, 100%, 50%, .3)
+
+#### text-align
+- 문자 정렬 방식을 지정
+- left / right / center /justify (양쪽 맞춤: 두줄이상에서만 적용가능)
+
+#### text-indent
+- (첫번째 줄의) 들여쓰기를 지정
+- 음수 값을 사용할 수 있다.
+- 화면 상 출력을 하지 않지만 필요한 컨텐츠를 명시적으로 text-indent: -9999px;로 설정한다.
+
+#### text-decoration
+- 문자의 장식(line)을 설정
+- none / underline / overline / line-through
+
+#### letter-spacing, word-spacing
+- 문자의 자간(글자 사이 간격)을 설정 / 단어 사이(띄어쓰기)의 간격을 지정
+- normal / 단위
