@@ -358,3 +358,32 @@ HSLA | 색상,채도,명도,투명도 | hsla(120, 100%, 50%, .3)
 #### letter-spacing, word-spacing
 - 문자의 자간(글자 사이 간격)을 설정 / 단어 사이(띄어쓰기)의 간격을 지정
 - normal / 단위
+
+___
+### CSS / 속성 - 띄움(정렬), 위치
+
+#### float
+- 요소를 좌우 방향으로 띄움 (수평 정렬)
+- none / left / right
+- float 속성이 적용된 요소의 주위로 다른. 요소들이 흐르게 되는데 이를 방지하기 위해 속성을 '해제'해야 한다.
+1. 형제요소에 clear: (left,right,both) 추가하여 해제
+2. 부모요소에 overfolw: (hidden,auto) 추가하여 해제
+3. 부모요소에 clearfix 클래스 추가하여 해제 (추천!)
+> inline 속성이라 하더라도 float 속성이 부여되면 block로 변화한다.
+
+#### clear
+- float 속성이 적용되지 않도록 지정(해제)
+- left/right/both
+
+#### position
+- 요조의 위치 지정 방법의 유형(기준)을 설정
+- 기준을 설정하고 top/bottom/left/right로 핸들링
+
+값 | 의미 | 기본값
+--- | --- | ---
+static | 유형 없음/ 배치 불가능 | static
+relative | 요소 자신을 기준으로 배치 | 
+absolute | 위치 상 부모 요소를 기준으로 배치 | 
+fixed | 브라우저(뷰포트)를 기준으로 배치 | 
+sticky | 스크롤 영역 기준으로 배치 | 
+
