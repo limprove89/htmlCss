@@ -378,7 +378,7 @@ ___
 #### position
 - 요조의 위치 지정 방법의 유형(기준)을 설정
 - 기준을 설정하고 top/bottom/left/right로 핸들링
-7
+
 값 | 의미 | 기본값
 --- | --- | ---
 static | 유형 없음/ 배치 불가능 | static
@@ -387,3 +387,142 @@ absolute | 위치 상 부모 요소를 기준으로 배치 |
 fixed | 브라우저(뷰포트)를 기준으로 배치 | 
 sticky | 스크롤 영역 기준으로 배치 | 
 
+- relative
+    - 요소 자신을 기준으로 하기에 주변에 영향을 주고 받는다.
+
+- absolute
+    - 위치 상 부모 요소를 기준으로 이동한다.
+    - 다만 부모 요소에도 position 속성의 값이 부여되어야 인식한다.
+
+- fixed
+    - 뷰표트(브라우저)를 기준으로 위치한다.
+    - (쇼핑몰 배너등에 자주 사용)
+
+- sticky (IE 사용불가)
+    - 스크롤 영역 기준으로 배치
+    - top/bottom/left/right 중 1개 이상 명시해줘야 동작
+    - 쇼핑몰 헤더 로고 상단 배치에 이용 가능
+
+> 요소 쌓임 순서?  
+요소가 쌓여 있는 순서를 통해 어떤 요소가 사용자와 가깝게(더욱 위에) 있는지를 결정 (Z축)
+
+1. static을 제외한 position 속성의 값이 있을 경우 가장 위에 쌓임
+2. position이 모두 존재한다면 z-index 속성의 숫자 값이 높을 수록 위에 쌓임
+3. position 속성의 값이 있고, z-index 속성의 숫자 값이 같다면, 'HTML'의 마지막 코드일 수록 위에 쌓임 (나중에 작성한 코드)
+
+- display 수정
+    - absolute, fixed 속성 값이 적용된 요소는 display 속성의 값이 대부분 block로 수정
+
+#### z-index
+- position이 지정된 요소의 '요소 쌓임' 정도를 설정
+- static을 제외한 position 속성이 있을 경우에만 사용이 가능하다.
+
+값 | 의미 | 기본값
+---| ---| ---
+auto | 부모요소와 동일한 '요소 쌓임' 정도로 설정 | auto
+숫자 | 단위 없음, 숫자가 높을수록 위에 쌓임 | 
+___
+### CSS / 속성 - 배경
+
+### background
+- 요소의 배경을 설정 (단축속성)
+- background: 색상 이미지경로 반복 위치 스크롤특성;
+
+#### background-color
+- 요소의 배경 색상을 지정 (개별속성)
+
+값 | 의미 | 기본값
+--- | --- | ---
+색상 | 요소의 배경 색상 | transparent (투명)
+
+#### background-image
+- 요소의 배경에 하나 이상의 이미지를 삽입 (개별속성)
+- 배경 이미지 삽입 시, 요소의 크기가 설정되어 있어야 배경 이미지가 노출된다.
+- 하나 이상의 '다중 배경 이미지' 사용 시 ,로 구분해서 사용
+
+#### background-repeat
+- 배경 이미지의 반복을 설정
+- repeat / repeat-x / repeat-y / no-repeat
+
+#### background-position
+- 배경 이미지의 위치를 지정
+- top / bottom / left / right / center / % / 단위
+
+#### background-attachment
+- 요소가 스크롤 될 때 배경 이미지의 스크롤 여부 설정
+- scroll / fixed / local
+- fixed : 쇼핑몰에 한때 유행했던 main 이미지가 고정이 되어 스크롤 되는 형태!
+- local : plusx style의 사이트 구성에 응용하기 좋겠음
+
+#### background-size
+- 배경 이미지의 크기를 지정
+- auto / 단위 / cover / contain
+
+___
+### CSS / 속성 - 전환 & 변환
+
+#### transitions (전환)
+- CSS 속성의 시작과 끝을 지정(전환 효과)하여 중간 값을 애니메이션
+- 바뀌기 전/후 중에 전상태에 입력하는 것이 일반적이다.
+- transition-property / transition-duration / transition-timing-function / transition-delay
+
+#### transition-property
+- 전환 효과를 사용할 속성 이름을 설정
+
+값 | 의미 | 기본값
+--- | --- | ---
+all | 모든 속성에 적용 | all
+속성이름 | 전환 효과를 사용할 속성 이름
+
+#### transition-duration
+- 전환 효과의 지속시간을 설정
+
+값 | 의미 | 기본값
+--- | --- | ---
+시간 | 전환 효과가 지속되는 시간 | 0s
+
+#### transition-timing-function
+- 타이밍 함수 (애니메이션 전환 효과를 계산하는 방법) 지정
+
+값 | 의미 | 기본값
+--- | --- | ---
+ease | 빠르게-느리게 | ease
+linear | 일정하게 |
+ease-in | 느리게-빠르게 | 
+ease-out | 빠르게-느리게|
+ease-in-out | 느리게-빠르게-느리게 | 
+cubic-bezier(n,n,n,n) | 자신만의 값을 정의(0~1) | 
+step(n) | n번 분할된 애니메이션 | 
+
+> Easing.net 참조
+
+#### transition-delay
+- 전환 효과가 몇 초 뒤에 시작할지 대기시간을 설정
+
+값 | 의미 | 기본값
+--- | --- | ---
+시간 | 전환 효과의 대기 시간을 설정 | 0s
+
+#### transform (변환)
+- 요소의 변환 효과(변형)을 지정
+- rotate / translate / skew / scale...
+- 2D 속성과 3D 속성이 존재
+- transform과 transition은 당연하지만 같이 사용된다.
+
+#### transform 2D
+- 이동 / 크기 / 회전 / 기울임 / 2차원 변환 효과 등이 있다.
+- 배치를 하려면 position 속성이 낫지만, 계속되는 움직임에서는 transform 으로 처리하는것이 낫다.
+
+#### transform 3D
+- 이동 / 크기 / 회전 /원근법 / 3차원 변환 효과 등이 있다.
+- perspecitive -> 원근감을 적용해서 확인하는 방법 (가장 앞에 위치해야 동작한다.)
+
+#### transform-origin
+- 요소 변환의 기준점을 설정
+- X축, Y축. Z축 기본값 (50%, 50%, 0)
+- Web은 기본적으로 x축은 오른쪽을 향하지만 y축은 하단을 향한다. 따라서 x축 0% 설정시 왼쪽 이미지 끝부분 y축 0% 설정시 윗쪽 이미지 끝부분을 나타낸다.
+
+#### transform-style
+- 3D 변환 요소의 자식 요소도 3D 변환을 사용할지 설정
+- flat (기본값/사용하지 않음) / preserve-3d (사용함)
+- 계속적인 사용시 지속적으로 부모 요소에 작성을 해야 한다.
