@@ -516,6 +516,7 @@ step(n) | n번 분할된 애니메이션 |
 #### transform 3D
 - 이동 / 크기 / 회전 /원근법 / 3차원 변환 효과 등이 있다.
 - perspecitive -> 원근감을 적용해서 확인하는 방법 (가장 앞에 위치해야 동작한다.)
+- 2D의 이미지를 3D로 표현 가능하다.
 
 #### transform-origin
 - 요소 변환의 기준점을 설정
@@ -526,3 +527,93 @@ step(n) | n번 분할된 애니메이션 |
 - 3D 변환 요소의 자식 요소도 3D 변환을 사용할지 설정
 - flat (기본값/사용하지 않음) / preserve-3d (사용함)
 - 계속적인 사용시 지속적으로 부모 요소에 작성을 해야 한다.
+
+#### perspective
+- 하위 요소를 관찰하는 원근 거리를 설정
+- perspective 함수와 속성은 차이가 있다.
+    - perspective 속성은 적용 대상이 관찰 대상의 부모 요소이다.
+    - perspective 함수는 적용 대상이 관찰 대상이다.
+> perspective 속성은 관찰 대상의 부모(조상) 요소에 적용하여 하위 요소들을 관찰하는 원근 거리를 설정하며, transform: perspective() 변환 함수는 관찰 대상에 직접 적용하여 그 대상을 관찰하는 원근 거리를 설정한다.
+
+#### perspective-origin
+- 원근 거리의 기준점을 설정
+
+#### backfave-visibility
+- 3D 변환으로 회전된 요소의 뒷면 숨김을 설정
+- visible / hidden 으로 구성된다.
+
+#### matrix(a,b,c,d,e,f)
+- 요소의 2차원 변환(Transforms) 효과를 지정
+- scale(), skew(), translate() 그리고 rotate()를 지정
+> 요소의 일반 변환(Transforms) 함수(2D,3D)를 사용하더라도 브라우저에 의해 matrix 함수로 계산되어 적용됩니다. (2D 변환 함수는 matrix로, 3D 변환 함수는 matrix3d로) 따라서 일반적인 경우에는 matrix가 아닌 일반 변환 함수로 사용하여도 된다.
+
+### CSS / 속성 - 애니메이션 & 다단
+
+#### 애니메이션
+- 요소에 애니메이션을 설정/제어 (단축속성)
+
+```CSS
+animation: 애니메이션이름 지속시간 [타이밍함수 대기시간 반복횟수 반봅방향 전후상태 재생/정지];
+
+.box {
+    width: 100px;
+    height: 100px;
+    background: tomato;
+    animation: hello 2s linear infinite both;
+}
+
+@keyframes hello {
+    0% {width: 200px;}
+    100% {width: 50px;}
+}
+```
+
+#### keyframes rules
+- 2개 이상의 애니메이션 중간 상태(프레임)을 지정
+- 반복횟수 무한 : infinite; / 재생 후 자연스러운 연결 재생 : alternate;
+
+#### animation - name/uuration
+- name: 규칙의 이름을 지정 / 기본값: none
+- duration: 애니메이션의 지속 시간 설정 / 기본값: 0s
+
+#### animation - timing-function/delay
+- timing-function: 타이밍 함수 지정
+- delay: 애니메이션의 대기 시간 설정 (음수가 허용됨)
+
+#### animation - iteration-count/direction
+- iteration-count: 애니메이션의 반복 횟수를 설정 / 숫자 or infinite(무한)
+- direction: 애니메이션의 반복 방향을 설정 / normal, reverse, alternate(정방향에서 역방향으로 왕복 반복), alternate-reverse(역방향에서 정방향으로 왕복 반복)
+
+#### animation-fill-mode
+- 애니메이션의 전후 상태(위치)를 설정
+- none(기본값): 기존 위치에서 시작 -> 애니메이션 시작 위치로 이동 -> 동작 -> 기존 위치에서 끝
+- forwards: 기존 위치에서 시작 -> 애니메이션 시작 위치로 이동 -> 동작 -> 애니메이션 끝 위치에서 끝
+- backwards: 애니메이션 시작 위치에서 시작 -> 동작 -> 기존 위치에서 끝
+- both : 애니메이션 시작 위치에서 시작 -> 동작 -> 애니메이션 끝 위치에서 끝 
+
+#### animation-play-state
+- 애니메이션의 재생과 정지를 설정
+- running(기본값): 애니메이션을 동작 / paused: 애니메이션 동작을 정지
+- 실무 사용에서는 가상요소 선택자, 가상클래스 선택자를 합쳐서 응용가능
+
+```CSS
+.box::before {
+    content: "running";
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+}
+.box:hover {
+    animation-play-state: paused;
+    background-color: dodgerblue;
+}
+.box:hover::before {
+    content: "paused";
+}
+```
+
+#### 다단 (multi-columns)
+- 일반 블록 레이아웃을 확장하여 여러 텍스트 다단으로 쉽게 정리하며, 가독성을 확보한다.
+- columns: 다단을 정의 {auto(기본값) / column-width / column-count}
+- column-gap: 단과 단 사이의 간격 설정
+- column-rule: 단과 단 사이의 구분 선을 지정
