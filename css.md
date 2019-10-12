@@ -718,3 +718,142 @@ ___
 
 ![flex-align-self](https://heropy.blog/images/screenshot/flex-align-self.jpg)
 
+___
+### grid
+- grid는 2차원 (행과 열)의 레이아웃 시스템
+- 1차원적인 flex 보다 복잡한 레이아웃 구성을 위해 사용
+- container
+    - display
+    - template (rows / columns / areas)
+    - auto (rows / columns / flow)
+    - grid (grid-template / grid-auto)
+    - gap (row-gap / column-gap)
+    - align-content
+    - justify-content
+    - place-content
+    - align-ltems
+    - justify-items
+    - place-items 
+- item
+    - row (row-start / row-end)
+    - column (column-start / column-end)
+    - area
+    - align-self
+    - justify-self
+    - place-self
+    - order
+    - z-index
+
+### container
+#### display
+- grid container를 정의한다.
+- 정의한 컨테이너의 자식요소는 자동적으로 items으로 정의된다
+- grid / inline-grid
+- .container { display: grid;}
+
+#### template (rows / columns)
+- 명시적으로 행/열의 크기를 정의한다.
+- fr (fraction, 공간 비율) 단위를 사용할 수 있다.
+- repeat() 함수를 사용할 수 있다.
+- 크기 정의 사이에 라인의 이름도 정의할 수 있다 []안에 이름 기입
+- 라인 시작번호/끝 번호 로 공간을 정의할 수 있다.
+- .container {  
+display: grid;  
+grid-template-rows: 100px 1fr;  
+grid-template-columns : repeat(3, 1fr);  
+grid-template-rows: [first] 100px [second] 1fr [third];  
+grid-template-columns : repeat(3, 1fr);  
+}
+- grid-template 단축 속성으로 area로 정의된 공간들 배치와 크기 까지 한번에 작성 가능
+
+```CSS
+.container {
+  display: grid;
+  grid-template:
+    "header header header" 80px
+    "main main aside" 350px
+    "footer footer footer" 130px
+    / 2fr 100px 1fr;
+}
+header { grid-area: header; }
+main   { grid-area: main; }
+aside  { grid-area: aside; }
+footer { grid-area: footer; }
+```
+
+#### template-areas
+- 지정된 그리드 영역 이름(item에 적용한 grid-area)을 참조해 그리드 템플릿을 구성
+- container가 아닌 item에 grid-area를 사용해 이름을 정의해 주고 그 이름을 가지고 템플릿을 구성.
+
+```CSS
+.container {
+  display: grid;
+  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "header header header"
+    "main . ."
+    "main . aside"
+    "footer footer footer";
+}
+header { grid-area: header; }
+main   { grid-area: main;   }
+aside  { grid-area: aside;  }
+footer { grid-area: footer; }
+```
+
+#### row-gap / column-gap
+- 각 행과 행 / 열과 열 사이의 간격을 지정.
+- gap: <grid-row-gap> <grid-column-gap>;
+
+#### auto (rows / columns)
+- 암시적 행/열의 크기를 정의
+- container에 정의한 명시적 행을 item의 정의로 인해 벗어나게 되는 경우 암시적인 행/열의 크기가 적용됨
+
+```HTML
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+```
+```CSS
+.container {
+  width: 300px;
+  height: 200px;
+  display: grid;
+  grid-template-rows: 100px 100px; /* 명시적 2개 행 정의 */
+  grid-template-columns: 150px 150px; /* 명시적 2개 열 정의 */
+  grid-auto-rows: 100px; /* 그 외(암시적) 행의 크기 정의 */
+}
+.item:nth-child(3) {
+  grid-row: 3 / 4;
+}
+```
+![grid-auto-rows](https://heropy.blog/images/screenshot/css-grid/grid-auto-rows-1.jpg)
+![grid-auto-columns](https://heropy.blog/images/screenshot/css-grid/grid-auto-columns-1.jpg)
+![grid-auto-columns](https://heropy.blog/images/screenshot/css-grid/grid-auto-columns-2.jpg)
+
+#### auto-flow
+- 배치하지 않은 아이템(item)을 어떤 방식의 '자동 배치 알고리즘'으로 처리할 지 정의
+- 배치 한 아이템은 grid-area 를 사용한 아이템을 의미
+- row / column / row dense (빈 영역 채움) / column dense (빈 영역 채움)
+
+![grid-auto-flow](https://heropy.blog/images/screenshot/css-grid/grid-auto-flow-1.jpg)
+![grid-auto-flow](https://heropy.blog/images/screenshot/css-grid/grid-auto-flow-2.jpg)
+
+#### align-content / justify-content
+- 그리드 컨텐츠(전체영역)를 수직/수평 정렬
+
+![align-content](https://heropy.blog/images/screenshot/css-grid/align-content-1.jpg)
+![justify-content](https://heropy.blog/images/screenshot/css-grid/justify-content-1.jpg)
+
+#### align-items / justify-items
+- 그리드 아이템의(각각) 수직/수평 정렬
+![align-items](https://heropy.blog/images/screenshot/css-grid/align-items-1.jpg)
+![justify-items](https://heropy.blog/images/screenshot/css-grid/justify-items-1.jpg)
+
+___
+### items
+#### row / column
+-  
