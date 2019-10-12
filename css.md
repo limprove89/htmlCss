@@ -621,3 +621,100 @@ animation: 애니메이션이름 지속시간 [타이밍함수 대기시간 반�
 - columns: 다단을 정의 {auto(기본값) / column-width / column-count}
 - column-gap: 단과 단 사이의 간격 설정
 - column-rule: 단과 단 사이의 구분 선을 지정
+
+___
+
+## CSS 레이아웃
+- 초창기에는 HTML에 레이아웃을 그려나가기 어려웠음.
+- table 코딩 -> position, float을 이용한 레이아웃으로 진화해왔지만 레이아웃에 특화된 속성이 아니기에 아쉬웠으며 복잡했다.
+- 레이아웃을 전문적으로 다루는 기능이 생겨났으며 그것이 flex, grid 이다.
+
+### Flex
+- container (부모요소)
+    - display
+    - flex-flow (direction / wrap)
+    - justify-content
+    - align-content
+    - align-items    
+- items (자식요소)
+    - order
+    - flex (grow/shrink/basis)
+    - align-self
+
+### container
+#### display
+- display 속성으로 container를 정의한다.
+- display: flex -> block 특성의 flex container를 정의
+- display: inline-flex -> inline 특성의 flex container를 정의
+
+> 컨테이너 자체에 적용되며, items에는 영향을 미치지 않는다.
+
+#### flex-flow
+- direction / wrap 의 단축속성이다.
+- flex-direction -> items의 주 축을 설정 (row/row-reverse/column/column-reverse)
+- flex-wrap -> items의 여러 줄 묶음 설정 (nowrap/wrap/wrap-reverse)
+
+#### justify-content
+- 주 축의 정렬 방법을 설정한다.
+- flex-start / flex-end / center / space-between / space-around  
+
+![flex-justify-content](https://heropy.blog/images/screenshot/flex-justify-content.jpg)
+
+#### align-content
+- 교차 축의 정렬 방법을 설정
+- flex-wrap을 통해 items가 2줄 이상이며, 여백이 있을 경우에만 사용가능
+- stretch / flex-start / flex-end / center / space-between / space-around
+
+![flex-align-content](https://heropy.blog/images/screenshot/flex-align-content.jpg)
+
+#### align-items
+- 교차 축에서 items의 정렬 방법을 설정
+- items가 한 줄일 경우에 사용 -> (2줄일 경우에는) align-content: stretch(기본값)일때 설정 해야한다.
+- stretch / flex-start / flex-end / center / baseline
+
+![flex-align-items](https://heropy.blog/images/screenshot/flex-align-items.jpg)
+
+### items
+
+#### order
+- item의 순서를 설정
+- item에 숫자가 클수록 순서가 밀리며, 음수를 허용.
+- order: 순서;
+
+![flex-item-order](https://heropy.blog/images/screenshot/flex-order.jpg)
+
+#### grow
+- item의 증가 너비 비율을 설정
+- 숫자가 크면 더 많은 너비를 가지며, item이 가변 너비가 아니거나, 값이 0일 경우 효과가 없다.
+- flex-grow: 증가너비;
+
+![flex-frow](https://heropy.blog/images/screenshot/flex-grow.jpg)
+
+#### shrink
+- item이 감소하는 너비의 비율을 설정
+- 숫자가 크면 더 많은 너비가 감소되며, item이 가변 너비가 아니거나, 값이 0일 경우 효과가 없다.
+- flex-shrink: 감소너비;
+
+![flex-shrink](https://heropy.blog/images/screenshot/flex-shrink.jpg)
+
+#### basis
+- item의 (공간 배분 전) 기본 너비를 설정
+- 값이 auto일 경우 width, height 등의 속성으로 item의 너비를 설정할 수 있다.
+- 하지만 단위(px,em,cm)값이 주어진 경우 설정할 수 없다.
+- flex-basis : 기본너비;
+
+![flex-basis](https://heropy.blog/images/screenshot/flex-basis.jpg)
+
+#### flex (grow / shrink / basis)
+- item의 너비 (증가,감소,기본)를 설정하는 단축속성입니다.
+- 주의할 점은 flex 단축 속성 사용시 basis의 기본값은 auto가 아닌 0으로 설정된다.
+- flex: 증가너비 감소너비 기본너비;
+
+#### align-self
+- 교차 축에서 개별 item의 정렬 방법을 설정
+- align-ltems는 container에 적용 방법을 설정하며, 필요에 의해 일부 item만 정렬 방법을 변경할때 align-self를 사용
+- 이 속성은 align-items 보다 우선시 된다.
+- align-self: 정렬방법;
+
+![flex-align-self](https://heropy.blog/images/screenshot/flex-align-self.jpg)
+
