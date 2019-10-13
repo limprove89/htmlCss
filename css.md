@@ -856,4 +856,127 @@ footer { grid-area: footer; }
 ___
 ### items
 #### row / column
--  
+- items에 적용되는 속성은 대부분 단수형
+- 각각 item에 배치 설정
+- span은 그 수만큼 확장하라는 의미
+- /를 기준으로 앞은 row(column)-start, 뒤는 row(column)-end를 의미
+- grid-row: 1 / 3;
+- grid-column: 1 / 4;
+
+#### area
+- container에서 나온 바와같이 공간에 이름을 정의할 때 사용
+- 또한 grid-row(column)-start(end)의 단축 속성으로도 사용
+- 영역 이름을 설정할 경우 row/column 개념은 무시된다.
+- 또한 주의할 문법으로는 시작 / 시작 / 끝 / 끝 으로 작성한다.
+    - grid-area: \<grid-row-start> / \<grid-column-start> / \<grid-row-end> / \<grid-column-end>;
+
+#### align-self, justify-self
+- 단일 그리드 아이템에 수직(수평)을 정렬한다.
+
+![align-self](https://heropy.blog/images/screenshot/css-grid/align-self-1.jpg)
+![justify-self](https://heropy.blog/images/screenshot/css-grid/justify-self-1.jpg)
+
+#### order
+- 그리드 아이템이 자동 배치되는 순서를 변경할 수 있다,
+- 숫자가 작을수록 앞에 배치된다.
+
+#### z-index
+- z-index 속성을 이용해 아이템이 쌓이는 순서를 변경할 수 있다.
+
+![grid-item-z-index](https://heropy.blog/images/screenshot/css-grid/z-index-1.jpg)
+
+### grid functions
+#### repeat
+- 반복되는 횟수의 행/열의 크기를 정의
+- 첫번째 인수로는 '반복 횟수' 두번째 인수로는 '행/열의 크기'
+
+```HTML
+/* 9컬럼 그리드 */
+.container {
+  grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+}
+.container {
+  grid-template-columns: repeat(9, 100px);
+}
+.container {
+  grid-template-rows: [row-start] 200px [row-end row-start] 200px [row-end];
+  grid-template-columns: [col-start] 100px [col-end col-start] 100px [col-end col-start] 100px [col-end];
+}
+.container {
+  grid-template-rows: repeat(2, [row-start] 200px [row-end]);
+  grid-template-columns: repeat(3, [col-start] 100px [col-end]);
+}
+.container {
+  grid-template: repeat(2, [row-start] 200px [row-end]) / repeat(3, [col-start] 100px [col-end]);
+}
+.container {
+  /* 12컬럼 그리드 */
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr 1fr 2fr;
+}
+.container {
+  grid-template-columns: repeat(6, 1fr 2fr);
+```
+
+#### minmax
+- 행/열의 '최소/최대 크기'를 정의
+- 첫번째 인수는 '최소값' 두번째 인수는 '최대값'
+- auto를 사용하면 유연하게 크기를 지정할 수 있다.
+
+```HTML
+.container {
+  grid-template-columns: minmax(100px, 1fr) minmax(200px, 1fr);
+}
+```
+![minmax](https://heropy.blog/images/screenshot/css-grid/minmax-1.jpg)
+
+#### fit-content
+- 행/열의 크기를 그리드 아이템이 포함하는 내용(컨텐츠)에 맞춤
+- 내용의 최댓값을 인수로 사용한다.
+- 컨텐츠의 크기를 사용하되 최대 (인숫값)으로 설정하는 의미
+
+```HTML
+.container {
+  grid-template-columns: fit-content(300px) fit-content(300px);
+}
+```
+![minmax](https://heropy.blog/images/screenshot/css-grid/fit-content-1.jpg)
+
+### grid units (그리드 단위)
+#### fr(fractional unit)
+- 사용 가능한 공간에 대한 비율
+
+#### min-content
+- grid-item이 포함하는 내용의 최소 크기
+- 한글 사용시 음절로 나누어질때는
+    - word-break: keep-all;
+
+#### max-content
+- grid-item이 포함하는 내용의 최대 크기
+
+#### auto-fill / auto-fit
+- 행/열의 개수를 컨테이너 행/열 크기에 맞게 자동적으로 조정
+- repeat() 함수와 같이 사용하며, 행/열과 아이템 개수가 명확하지 않은 경우 사용
+- 기본적으로 동일하나, fill은 남은 공간을 놔두고 fit은 남은 공간을 채우는 개념
+
+```HTML
+.container {
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+}
+```
+![auto-fill](https://heropy.blog/images/screenshot/css-grid/auto-fill-1.jpg)
+```HTML
+.container {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+```
+![auto-fill](https://heropy.blog/images/screenshot/css-grid/auto-fill-2.jpg)
+
+```HTML
+.container.auto-fill {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+.container.auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+```
+![auto-fit](https://heropy.blog/images/screenshot/css-grid/auto-fill-3.jpg)
