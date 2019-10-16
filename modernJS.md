@@ -73,3 +73,30 @@ var products = [
 
 console.log(products[0][1]); /*. imac. */
 ```
+
+### 객체(object)
+- 배열보다 진화한 단계의 객체
+- 객체의 구성 (name / value / property)
+- 객체는 선언 시 {} 안에 프로퍼티를 작성한다.
+- 각 프로퍼티를 ,(comma)로 구분하며 name : value 의 문법으로 기입한다.
+- 값(value)에 문자열은 반드시 ""를 붙인다.
+- 객체를 불러올때 []와 . 으로 호출가능하며 [] 호출 시 name에 ""를 붙여 호출
+
+```javascript
+ var person = {
+        name: "ABC",
+        age: 100,
+        nationality: "korea"
+ };  
+
+ console.log(person["name"]);  /* ABC */
+ console.log(person.name);   /* ABC */
+
+ ```
+- 객체의 명칭
+    - name / age / nationality => name/key
+    - "ABC", 100, "KOREA" => value
+    - name = "ABC", age = 100, nationality = "KOREA" => property
+
+___
+## 함수

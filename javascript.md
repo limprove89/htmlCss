@@ -77,19 +77,19 @@ ___
 ___
 
 ### 자료형 (data type)
-- 자바스크립트는 동적타이핑
+- 자바스크립트는 동적 타이핑
 - 변수를 선언하고 후에 할당을 자유롭게 변경 가능
 - 할당 값이 변경될 때마다 변수에 자료형은 변화
 - 따라서 js는 변수가 가지는 고정 타입이 없다.  
 
-- 기본 타입
+- 기본 타입 (Primitive values)
     - boolean
     - Null
     - Undefined
     - Number
     - String
     - Symbol (ECMA6에서 추가)
-- 객체 (object)
+- 객체 (objects)
     - object  
 
 - null의 타입은 objcet, undefined 타입은 undefined
