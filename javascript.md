@@ -68,3 +68,32 @@ ___
     - var는 함수 스코프이기에 블록 스코프가 적용되지 않는다.
     - 부자연스러운 동작이므로 블록에서는 let, const를 이용한다.
 - 주의할 점은 선언과 할당의 개념 구분
+
+### var hoisting
+- 호이스팅은 하단에 선언만을 위로 끌어올려 적용
+- var에만 적용되며, let,const는 적용 안됨
+- 호이스팅은 할당이 아닌 선언만을 올림
+
+___
+
+### 자료형 (data type)
+- 자바스크립트는 동적타이핑
+- 변수를 선언하고 후에 할당을 자유롭게 변경 가능
+- 할당 값이 변경될 때마다 변수에 자료형은 변화
+- 따라서 js는 변수가 가지는 고정 타입이 없다.  
+
+- 기본 타입
+    - boolean
+    - Null
+    - Undefined
+    - Number
+    - String
+    - Symbol (ECMA6에서 추가)
+- 객체 (object)
+    - object  
+
+- null의 타입은 objcet, undefined 타입은 undefined
+- null과 undefined는 ==로는 일치/===로는 불일치
+- template string (ECMA6 추가) `` 사이에 기입
+- symbol은 동일한 인자라도 독립적으로 구분
+- symbol은 new 생성자가 작동 안됨
