@@ -123,11 +123,13 @@ function logTask(task){
     console.log("-");
 }
 ```
+
 - 함수 작성시 주의사항으로는 형변환 할때 String처럼 대문자 주의
     - String(a) => 첫글자 대문자 / 괄호 안에 기호 없음
 - 파라미터가 문자열로 자동 변환되는걸 의식하여 함수안에서 형변환을 명시해줄것!
 
 ### return
+
 - 함수의 결과값을 돌려준다.
 
 ```javascript
@@ -146,7 +148,7 @@ console.log(inchToCentimeter(1) + inchToCentimeter(5));   // 15.24
 
 - 조금 혼동될 수 있는 부분은 inchToCentimeter 함수 안에 변수 centimeter와 함수 호출 시 변수 result1 부분
     - inchToCentimeter 함수의 결과값을 변수 centimeter에 담고 그것을 변수 result1에 담는다.
- 
+
 ### 내장함수
 
 - 자바스크립트에 기본적으로 내장되어 있는 함수
@@ -173,3 +175,11 @@ console.log(inchToCentimeter(1) + inchToCentimeter(5));   // 15.24
 - prompt(): 사용자에게 메시지를 띄우고, 문자열을 입력받는 함수
 - confirm(): 사용자에게 메시지를 띄우고, 확인과 취소 중 하나를 누르게 하는 함수
 
+### if문
+
+- if (조건부문){수행부문};
+- else if (조건부문){수행부문};
+- else {수행부문};
+
+[자바스크립트의 자동 형변환](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-4-%EC%95%94%EB%AC%B5%EC%A0%81-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98-%EB%B2%88%EC%97%AD)  
+-확인하고 위치시킬것!
