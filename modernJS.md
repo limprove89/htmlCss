@@ -1,7 +1,9 @@
 # Mordern Javascript
 
 ## 자료형
+
 ### 숫자형
+
 - number : 자바스크립트에서는 소수,정수 모두 숫자형 number
 - syntactic Sugar : 자주 쓰이는 표현을 간략하게
     - x = x + 1;  => x += 1;
@@ -16,12 +18,14 @@
     - not = !
 
 ### 형 변환
+
 - 문자열을 숫자로, 혹은 숫자를 문자로 변환
 - Number("7"), String(7) 로 형변환을 한다.
     - javascript에서 타입명은 첫번째 글자 대문자로 작성하여야 한다.
     - window.prompt는 언제나 문자열로 출력하기에 Number()로 결과값을 감쌀때, 활용한다.
 
 ### 배열 (array)
+
 - 여러 자료를 저장할 때 사용
 - 배열 안에는 여러 형태가 저장 가능하다.=> (한 배열안에 숫자형, 문자형, 논리형 동시 저장 가능)
 - 배열은 typeof에서 object로 확인된다.
@@ -31,6 +35,7 @@
     - ipad[2];
 
 #### 문자열 과 배열
+
 - 문자열은 js에서 배열처럼 알파벳 집합으로 인식
 - 공통적으로 적용되는 부분도 있지만 차이점도 존재
 - mutable / immutable
@@ -60,6 +65,7 @@ console.log(text2);  /* hello */
 ```
 
 #### 2차 배열 (배열 안에 배열)
+
 - 배열 안에 배열 존재 가능
 
 ```javascript
@@ -75,6 +81,7 @@ console.log(products[0][1]); /*. imac. */
 ```
 
 ### 객체(object)
+
 - 배열보다 진화한 단계의 객체
 - 객체의 구성 (name / value / property)
 - 객체는 선언 시 {} 안에 프로퍼티를 작성한다.
@@ -93,14 +100,18 @@ console.log(products[0][1]); /*. imac. */
  console.log(person.name);   /* ABC */
 
  ```
+
 - 객체의 명칭
     - name / age / nationality => name/key
     - "ABC", 100, "KOREA" => value
     - name = "ABC", age = 100, nationality = "KOREA" => property
 
 ___
+
 ## 함수
+
 - 함수에는 함수명, 인자(파라미터), 수행부분이 존재
+
 ```javascript
 /* 문법 */
 function 함수명(파라미터) {
@@ -112,4 +123,23 @@ function logTask(task){
     console.log("-");
 }
 ```
+
+### 내장함수
+
+- 자바스크립트에 기본적으로 내장되어 있는 함수
+
+#### 형 변환 함수
+
+형 변환 함수는 첫번째 문자를 대문자로 작성
+
+- String(3);
+- Number('7');
+
+#### parseInt 함수
+
+숫자와 문자가 섞여 있을 때, 숫자만 꺼내서 반환  
+<span style="color:red">숫자가 앞에 있어야만 제대로 작동</span>
+
+- parseInt('100세');    /*  100세  */
+- parseInt('세100');    /*  NAN  */ (Not a Number)
 
