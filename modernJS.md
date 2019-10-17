@@ -100,3 +100,16 @@ console.log(products[0][1]); /*. imac. */
 
 ___
 ## 함수
+- 함수에는 함수명, 인자(파라미터), 수행부분이 존재
+```javascript
+/* 문법 */
+function 함수명(파라미터) {
+    수  행  문;
+}
+
+function logTask(task){
+    console.log(task + ": 완료");
+    console.log("-");
+}
+```
+
