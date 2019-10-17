@@ -112,4 +112,27 @@ function logTask(task){
     console.log("-");
 }
 ```
+- 함수 작성시 주의사항으로는 형변환 할때 String처럼 대문자 주의
+    - String(a) => 첫글자 대문자 / 괄호 안에 기호 없음
+- 파라미터가 문자열로 자동 변환되는걸 의식하여 함수안에서 형변환을 명시해줄것!
 
+### return
+- 함수의 결과값을 돌려준다.
+
+```javascript
+function inchToCentimeter(inch) {
+    var centimeter = inch * 2.54;  // 1 inch = 2.54cm
+    return centimeter;             // cm로 계산한 결괏값 돌려주기
+}
+
+var result1 = inchToCentimeter(2); // 2 inch를 cm로 바꾼 값
+var result2 = inchToCentimeter(3); // 3 inch를 cm로 바꾼 값
+
+console.log(result1);   // 5.08
+console.log(result2);   // 7.62
+console.log(inchToCentimeter(1) + inchToCentimeter(5));   // 15.24
+```
+
+- 조금 혼동될 수 있는 부분은 inchToCentimeter 함수 안에 변수 centimeter와 함수 호출 시 변수 result1 부분
+    - inchToCentimeter 함수의 결과값을 변수 centimeter에 담고 그것을 변수 result1에 담는다.
+ 
