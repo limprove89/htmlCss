@@ -181,5 +181,32 @@ console.log(inchToCentimeter(1) + inchToCentimeter(5));   // 15.24
 - else if (조건부문){수행부문};
 - else {수행부문};
 
+### switch문
+
+- switch (변수명){case : break(continue); default : break;}
+- 모든 케이스가 순차적 연결 일때 스위치문이 적합 (break를 생략하여 구현 가능)
+
+## 반복문
+
+### for 반복문
+
+- for (let i = 0; i < 5; i++) {수행부분}
+- for문과 if문의 중첩은 활용에 가장 흔한 경우
+
+### for of 반복문 (of for문)
+
+- for문에 불필요한 i 대신 배열을 불러 올수 있음
+- for(매개변수 of 배열이름) {수행부분}
+
+```javascript
+var brands = ['NIKE','ADIDAS','REEBOK'];
+
+for (brandName of brands) {
+console.log(brandName);
+}
+```
+
+### for in 반복문
+
 [자바스크립트의 자동 형변환](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-4-%EC%95%94%EB%AC%B5%EC%A0%81-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98-%EB%B2%88%EC%97%AD)  
 -확인하고 위치시킬것!
