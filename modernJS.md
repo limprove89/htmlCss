@@ -193,10 +193,11 @@ console.log(inchToCentimeter(1) + inchToCentimeter(5));   // 15.24
 - for (let i = 0; i < 5; i++) {수행부분}
 - for문과 if문의 중첩은 활용에 가장 흔한 경우
 
-### for of 반복문 (of for문)
+### for of 반복문 (of for문) //ES6 부터 적용
 
 - for문에 불필요한 i 대신 배열을 불러 올수 있음
 - for(매개변수 of 배열이름) {수행부분}
+- 결과값으로 value를 출력한다.
 
 ```javascript
 var brands = ['NIKE','ADIDAS','REEBOK'];
@@ -204,9 +205,59 @@ var brands = ['NIKE','ADIDAS','REEBOK'];
 for (brandName of brands) {
 console.log(brandName);
 }
+/* 출력
+NIKE
+ADIDAS
+REEBOK
+*/
 ```
 
 ### for in 반복문
 
+- 위에 for in과 비슷한 용도와 문법
+- 차이점으로는 결과값으로 배열에 index를 출력한다.
+
+```javascript
+var brands = ['NIKE','ADIDAS','REEBOK'];
+
+for (brandName in brands) {
+console.log(brandName);
+}
+/* 출력
+0
+1
+2
+*/
+```
+
+### while 반복문
+
+- while (조건부문) {수행부문}
+- 초기화는 while문 앞에 작성하고, i++는 수행부분에 작성
+
+```javascript
+var i = 0;
+while (i < 6) {
+    console.log(brands[i]);
+    i++
+}
+```
+
+#### break문
+
+- 반복문에서 조건부분과 상관 없이 반복문에서 나오는 기능
+
+#### continue문
+
+- 현재 진행되고 있는 수행 부분을 중단시키고 바로 조건부분으로 돌아가서 다음 수행
+
+### for문 vs while문
+
+- 기능적인 차이는 크게 없다.
+- 경우에 따라 적합하고 보기 좋은 차이
+- 반복 횟수가 예측 가능할 때는 for문 추천
+- 반복 횟수를 예측할 수 없을 때 while문 추천
+- javascript flag 참조
+    
 [자바스크립트의 자동 형변환](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-4-%EC%95%94%EB%AC%B5%EC%A0%81-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98-%EB%B2%88%EC%97%AD)  
 -확인하고 위치시킬것!
