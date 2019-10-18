@@ -179,9 +179,10 @@ ___
     - const hello = new Function('매개변수','수행부분'); /* 생성자 함수를 변수에 대입  */
     - const hello = (매개변수) => {수행부분};   /* arrow function  */
     - function Person(name, age) {this.name = name; this.age = age;}  
-    const p = new Person('Mark', 37);
+    const p = new Person('Mark', 37);   /*  생성자 함수를 이용한 객체 생성  */
 
 
 선언함수|익명함수|변수=생성자함수|화살표함수|생성자함수
 :---:|:---:|:---:|:---:|:---:
 함수 선언 전 상단에서 호출 가능(호이스팅)|함수 선언 전 상단에서 호출 불가|변수와 수행부분 '문자열' 입력, 글로벌 변수만 취급가능| 항상 익명함수로 사용 가능. 매개변수가 하나일 때, 괄호 생략 가능, return 생략 가능|객체를 만들어 인자로 넣어준 값을 프로퍼티로 생성
+
