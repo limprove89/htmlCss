@@ -176,6 +176,7 @@ ___
 - 함수 선언 방법
     - function 함수명(매개변수){실행부분}  /*  선언적 function  */
     - const hello = function(매개변수){실행부분}    /*  익명함수  */
+    - const hello = new Function(); /* 생성자 함수  */
 
 
 선언함수|익명함수
