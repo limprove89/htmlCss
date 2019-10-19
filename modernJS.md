@@ -259,6 +259,29 @@ while (i < 6) {
 - 반복 횟수를 예측할 수 없을 때 while문 추천
 - javascript flag 참조
 
+___
+
+## 이벤트
+
+### 이벤트
+
+- HTML 요소들에게 일어날 수 있는 일들
+- ex)사용자가 키보드를 누름
+
+### 이벤트 핸들링
+
+- 이벤트가 일어났을 때, 어떤 동작을 하게 하는 것
+- ex) (사용자가 키보드를 눌렀을 때) 게임 종료
+- 좋은 코드를 위해 HTML에는 javascript에 관한 코드가 없도록 해야한다.
+- ex) document.getElementById('seoul').addEventListener('click',clickseoul);
+
+#### 키보드 이벤트
+
+- HTML에 요소가 아닌 전체 페이지에 동작범위는 (id값 대신)document로 지정한다.
+- HTML 문서에서 실행되는 이벤트는 event 객체에 저장된다. (keydown 등과 같은)
+- event['key']에는 누른 버튼의 정보가 담긴다.
+- 키보드 이벤트 핸들링에 조건으로 설정
+
 
 [자바스크립트의 자동 형변환](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-4-%EC%95%94%EB%AC%B5%EC%A0%81-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98-%EB%B2%88%EC%97%AD)  
 -확인하고 위치시킬것!
