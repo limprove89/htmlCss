@@ -261,7 +261,7 @@ while (i < 6) {
 
 ___
 
-## 이벤트
+## 이벤트 (Event)
 
 ### 이벤트
 
@@ -282,7 +282,49 @@ ___
 - event['key']에는 누른 버튼의 정보가 담긴다.
 - 키보드 이벤트 핸들링에 조건으로 설정
 
-
 [자바스크립트의 자동 형변환](https://velog.io/@jakeseo_me/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%9D%BC%EB%A9%B4-%EC%95%8C%EC%95%84%EC%95%BC-%ED%95%A0-33%EA%B0%80%EC%A7%80-%EA%B0%9C%EB%85%90-4-%EC%95%94%EB%AC%B5%EC%A0%81-%ED%83%80%EC%9E%85-%EB%B3%80%ED%99%98-%EB%B2%88%EC%97%AD)  
 -확인하고 위치시킬것!
 
+## 패키지
+
+### Math
+
+- Math.abs(x) -> 절댓값
+- Math.max(a,b,c,d) -> 최댓값
+- Math.min(a,b,x,d) -> 최솟값
+- Math.pow(x,y) -> x의 y승
+- Math.sqrt(x) -> x의 제곱근
+- Math.round(x) -> x의 반올림 값
+- Math.floor(x) -> x의 버림 값
+- Math.ceil(x) -> x의 올림 값
+- Math.random() -> 0과 1 사이에 랜덤한 값
+
+### String
+
+- length: 문자열의 길이
+- str.charAt(index)/str[index] -> 문자열의 str의 index에 있는 문자
+- str.indexOf(searchValue) -> str 내에 문자열 searchValue가 포함되어 있는지 확인
+- str.lastindexOf(searchValue) -> str 내에 문자열 searchValue 결과 값중 가장 뒤에 위치한 결과값
+- str.toUpperCase() -> str 모든 글자 대문자로 변환
+- str.toLowerCase() -> str 모든 글자 소문자로 변환
+- str.substring(indexStart, indexEnd) -> 인덱스 indexstart 부터 인덱스 indexEnd 전까지 문자열을 잘라서 만들 새로운 문자열
+- str.substr(start, length) -> 인덱스 start부터 길이 length의 문자열을 리턴
+- str.trim -> str의 앞뒤 공백(띄어쓰기, 들여쓰기, 줄바꿈) 등을 제거한 문자열 리턴
+
+### Array
+
+- length: 배열의 길이
+- arrayName.indexof(item) -> 배열에 item이 포함여부 index값 리턴
+- arrayName.push(item) -> 배열에 끝에 item 추가
+- arrayName.pop() -> 배열에 마지막 요소가 빠지며, 그 요소가 리턴
+- arrayName.join() -> 배열에 모든 요소가 ,로 구분되며 합쳐짐
+- arrayName.join(문자) -> 배열에 모든 요소가 파라미터 문자로 구분되며 합쳐짐
+
+### Date
+
+- new Date() -> 현재 날짜로 설정
+- new Date('1988-06-09') -> 기입된 날짜로 설정
+- new Date('Dec 25 2000') -> 기입된 날짜로 설정
+- date.getMonth() -> 날짜 정보 받아오기
+- date.getSeconds() -> 시간(초) 정보 받아오기
+- getTime() -> 1970년 1월 1일 자정으로부터 몇 ms가 지났는지 리턴
