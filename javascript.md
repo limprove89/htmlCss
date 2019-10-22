@@ -212,3 +212,275 @@ ___
 선언함수|익명함수|변수=생성자함수|화살표함수|생성자함수
 :---:|:---:|:---:|:---:|:---:
 함수 선언 전 상단에서 호출 가능(호이스팅)|함수 선언 전 상단에서 호출 불가|변수와 수행부분 '문자열' 입력, 글로벌 변수만 취급가능| 항상 익명함수로 사용 가능. 매개변수가 하나일 때, 괄호 생략 가능, return 생략 가능|객체를 만들어 인자로 넣어준 값을 프로퍼티로 생성
+
+## 클래스 (es6 추가)
+
+- 객체를 만들 수 있는 새로운 방법
+
+### 클래스 생성 방법
+
+- 선언적 방식
+    - class A {}    
+- class 표현식을 변수에 할당
+    - const B = class {};
+- 클래스는 호이스팅이 일어나지 않는다! 
+
+### 생성자 (constructor)
+
+- 클래스를 이용하여 객체를 생성할 때 외부 인자를 넣을 수 있음 
+
+```javascript
+class C {
+    constructor(name, age) {
+        console.log('constructor', name, age);
+        }
+    }
+    
+console.log(new C('Mark', 37));   /*    constructor Mark 37    */
+console.log(new C());   /* undefined undefined  */
+```
+
+### 멤버 변수
+
+```javascript
+class A {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+        }
+    }
+    
+    console.log(new A('Mark', 37));  /*  A { name: 'Mark', age: 37 }  */
+
+class B {
+    name;
+    age;
+}
+
+    console.log(new B());  /*  B {name: undefined, age: undefined }  */
+    
+class C {
+    name = 'no name';
+    age = 0;
+    
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+    console.log(new C('Mark', 37));  /*  C {name: 'Mark', age: 37 }  */
+```
+
+### 멤버 함수
+
+- 클래스 안에 함수를 담을 수 있다.
+
+```javascript
+class A {
+    hello1() {
+        console.log('hello1',this);
+    }
+    
+    hello2 = () => {
+        console.log('hello2',this);
+    }
+}
+    
+new A().hello1();  /* hello1 A {hello2: [Function: hello2] }  */
+new A().hello2();  /* hello2 A {hello2:  [Function: hello2] }  */
+
+class B {
+    name = 'Mark';
+    
+    hello() {
+        console.log('hello', this.name);
+    }
+}
+
+new B().hello();  /*  hello Mark  */
+```
+
+### get / set
+
+- 변수에 _를 붙이면 통상적으로 내부적으로 사용하는 변수를 의미
+- 외부에서의 접근은 get/set을 통해서만 변경
+
+```javascript
+class A {
+    _name = 'no name';
+    
+    get name() {
+        return this._name + '@@@';
+    }
+    
+    set name(value) {
+        this._name = value + '!!!';
+    }
+}
+
+const a = new A();
+console.log(a);  /* A {_name:'no name'}   */
+a.name = 'Mark';    
+console.log(a); /*  A {_name:'Mark!!!'}   */
+console.log(a.name);    /*  A {_name:'Mark!!!@@@'}   */
+console.log(a._name);   /*  A {_name: Mark!!!}  */
+
+// read only
+
+class B {
+    _name = 'no name';
+    
+    get name() {
+        return this._name + '@@@';
+    }
+}
+
+const b = new B();
+console.log(b)  /*  B {_name: 'no name' } */
+b.name = 'Mark';
+console.log(b)  /*  B {_name: 'no name' } */
+```
+
+### static 변수/함수
+
+- 객체가 아닌, 직접적인 클래스의 변수와 함수
+- 클래스가 붕어빵 틀이라고 하였을 때, static 변수/함수는 틀이 아닌 클래스 자체에 변수/함수
+- 따라서 생성자를 통하여 새로운 객체를 생성하였을 때, undefined 
+- 클래스 내에 호출 시, this가 아닌 클래스명으로 접근해야한다.
+
+```javascript
+class A {
+    static age = 37;
+    static hello() {
+        console.log(A.age);
+    }
+}
+
+console.log(A, A.age);  /*  [Function: A] {age: 37} 37  */
+A.hello();  /*  37  */
+
+class B {
+    age = 37;
+    static hello() {
+        console.log(this.age);
+    }
+}
+
+console.log(B, B.age);  /*  [Function: B] undefined */
+B.hello();  /*  undefined   */
+// new B().hello(); /* error    */
+
+class C {
+    static name = '이 클래스의 이름은 C가 아니다.';
+}
+
+console.log(C); /*  [Function: 이 클래스의 이름은 c가 아니다.]  */
+```
+
+### extends (상속)
+
+- 부모의 인스텐스를 그대로 상속 가능
+
+```javascript
+class Parent {
+    name = 'Lee';
+    
+    hello() {
+        console.log('hello', this.name);
+    }
+}
+
+class Child extends Parent {}
+
+const p = new Parent();
+const c = new Child();
+
+console.log(p, c);  /*  Parent { name: 'Lee' } child { name: 'Lee' }    */
+c.hello();  /*  hello Lee   */
+c.name = 'Anna';
+c.hello();  /*  hello Anna  */
+```
+
+### override
+
+- 클래스의 상속 멤버 변수 및 함수 오버라이딩, 추가
+- 상속 받은 값 중 부모에 없어 자식이 추가한 값
+
+```javascript
+class Parent {
+    name = 'Lee';
+    
+    hello() {
+        console.log('hello', this.name);
+    }
+}
+
+class Child extends Parent {
+    age = 37;
+    
+    hello() {
+        console.log('hello', this.name, this.age);
+    }
+}
+
+const p = new Parent();
+const c = new Child();
+
+console.log(p, c)   /*  Parent { name : Lee } Child { name : Lee, Age : 37 }    */
+c.hello();  /* hello Lee 37 */
+c.name = 'Anna';
+c.hello();  /* hello Anna 37    */
+```
+
+### super
+
+- 클래스의 상속 생성자 함수 변경
+- 클래스에서 함수의 변경 사항에 있어 추가 사항 이전에 super(받은 인자값);를 입력하여 기존 동작을 수행하도록 한다.
+
+```javascript
+class Parent {
+    name;
+    
+    constructor(name) {
+    this.name = name;
+    }
+    
+    hello() {
+        console.log('hello', this.name);
+    }
+}
+
+class Child extends Parent {
+    age;
+    
+    constructor(name, age) {
+        super(name);
+        this.age = age;
+    }
+    
+    hello() {
+        console.log('hello', this.name, this.age);
+    }
+}
+
+const p = new Parent('Mark');
+const c = new Child('Mark', 37);
+
+console.log(p, c);  /*  Parent { name : Mark } Child { name : Mark, age : 37 }  */ 
+c.hello();  /*  hello Mark 37   */
+```
+
+### static
+
+- 클래스의 상속 static 상속
+
+```javascript
+class Parent {
+    static age = 37;
+}
+
+class Child extends Parent {}
+
+console.log(Parent.age, Child.age); /*  37 37   */
+```
