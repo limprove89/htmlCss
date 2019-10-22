@@ -328,3 +328,50 @@ ___
 - date.getMonth() -> 날짜 정보 받아오기
 - date.getSeconds() -> 시간(초) 정보 받아오기
 - getTime() -> 1970년 1월 1일 자정으로부터 몇 ms가 지났는지 리턴
+
+___
+
+## Audio
+
+- 소리의 상태는 크게 '생성', '재생', '정지'
+- new Audio("file location of url); -> 생성자를 통해 (변수에 할당하거나) 생성할 수 있다.
+- 기본적으로 이벤트 리스너를 통해 버튼과 연결 시켜준다.
+- 정지 후 재생 시 멈춤 구간 부터 다시 재생이 되며, 처음부터 재생 할 때는 정지버튼에 currenTime = 0;을 선언 한다.
+
+```HTML
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Audio Player</title>
+  <meta charset="utf-8" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+<button id="playBtn">Music Start</button>
+<button id="stopBtn">STOP</button>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+<script> 
+var audioFile = new Audio("https://d34x6xks9kc6p2.cloudfront.net/540997b0-a35f-4b69-86d6-b1c925c4a264/540997b0-a35f-4b69-86d6-b1c925c4a264.mp3");
+
+function playMusic() {
+    audioFile.play();
+}
+
+function stopMusic() {
+    audioFile.pause();
+    audioFile.currenTime = 0;
+}
+
+$('#playBtn').on('click', playMusic);
+$('#stopBtn').on('click', stopMusic);
+</script> 
+
+</body>
+</html>
+```
