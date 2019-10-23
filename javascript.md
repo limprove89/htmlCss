@@ -68,15 +68,15 @@ ___
 ### scope of variables (변수의 유효 범위)
 
 - const, let은 블록 스코프
-    - {} 블록 안에서만 그 값이 유효하다.
-    - 블록 밖에서 호출을 하면 정의되지 않는다.
+  - {} 블록 안에서만 그 값이 유효하다.
+  - 블록 밖에서 호출을 하면 정의되지 않는다.
 - var는 함수 스코프
-    - 함수 영역이 유효 범위
-    - 함수 영역 안에서 변수 var를 정의하고 함수 밖에서 호출하면 정의되지 않는다.
+  - 함수 영역이 유효 범위
+  - 함수 영역 안에서 변수 var를 정의하고 함수 밖에서 호출하면 정의되지 않는다.
 - var를 블록 스코프에서 호출하는 경우
-    - 블록 영역 안에서 var를 정의하고 밖에서 호출한 경우 동작한다.
-    - var는 함수 스코프이기에 블록 스코프가 적용되지 않는다.
-    - 부자연스러운 동작이므로 블록에서는 let, const를 이용한다.
+  - 블록 영역 안에서 var를 정의하고 밖에서 호출한 경우 동작한다.
+  - var는 함수 스코프이기에 블록 스코프가 적용되지 않는다.
+  - 부자연스러운 동작이므로 블록에서는 let, const를 이용한다.
 - 주의할 점은 선언과 할당의 개념 구분
 
 ### var hoisting
@@ -95,14 +95,14 @@ ___
 - 따라서 js는 변수가 가지는 고정 타입이 없다.  
 
 - 기본 타입 (Primitive values)
-    - boolean
-    - Null
-    - Undefined
-    - Number
-    - String
-    - Symbol (ECMA6에서 추가)
+  - boolean
+  - Null
+  - Undefined
+  - Number
+  - String
+  - Symbol (ECMA6에서 추가)
 - 객체 (objects)
-    - object  
+  - object  
 
 - null의 타입은 objcet, undefined 타입은 undefined
 - null과 undefined는 ==로는 일치/===로는 불일치
@@ -118,8 +118,8 @@ ___
 - 조건문 블럭은 {중괄호}안에 한개 이상에 statement
 - 블록에 코드가 한줄이면, 중괄호 {} 생략가능
 - 표현식이 참/거짓으로 평가되는 경우
-    - 참(truethy): true, 37, 'Mark', {}, []
-    - 거짓(falsy): false, 0, '', null, undefined, NAN
+  - 참(truethy): true, 37, 'Mark', {}, []
+  - 거짓(falsy): false, 0, '', null, undefined, NAN
 
 ### if / else if / else
 
@@ -129,15 +129,15 @@ ___
 ### 논리 연산자
 
 - and: &&
-    - 표현식 && 표현식
-    - 둘 다 참 일때 참이다.
-    - 앞 표현식이 참일때, 뒤 표현식을 평가할 필요가 생기기에 뒤 표현식이 실행
+  - 표현식 && 표현식
+  - 둘 다 참 일때 참이다.
+  - 앞 표현식이 참일때, 뒤 표현식을 평가할 필요가 생기기에 뒤 표현식이 실행
 - or: ||
-    - 표현식 || 표현식
-    - 둘 중 하나만 참이면 참이다.
-    - 앞 평가식이 참이면, 뒤 표현식을 평가할 필요가 없어서 실행되지 않는다.
+  - 표현식 || 표현식
+  - 둘 중 하나만 참이면 참이다.
+  - 앞 평가식이 참이면, 뒤 표현식을 평가할 필요가 없어서 실행되지 않는다.
 - not: !
-    - 앞 표현식이 거짓일 때만 뒤 표현식 실행
+  - 앞 표현식이 거짓일 때만 뒤 표현식 실행
 
 ### 삼항 연산자
 
@@ -202,12 +202,12 @@ ___
 
 - 자바스크립트에서 함수는 표준 내장 객체
 - 함수 선언 방법
-    - function 함수명(매개변수){실행부분}  /*  선언적 function  */
-    - const hello = function(매개변수){실행부분}    /*  익명함수  */
-    - const hello = new Function('매개변수','수행부분'); /* 생성자 함수를 변수에 대입  */
-    - const hello = (매개변수) => {수행부분};   /* arrow function  */
-    - function Person(name, age) {this.name = name; this.age = age;}  
-    const p = new Person('Mark', 37);   /*  생성자 함수를 이용한 객체 생성  */
+  - function 함수명(매개변수){실행부분}  /*  선언적 function  */
+  - const hello = function(매개변수){실행부분}    /*  익명함수  */
+  - const hello = new Function('매개변수','수행부분'); /* 생성자 함수를 변수에 대입  */
+  - const hello = (매개변수) => {수행부분};   /* arrow function  */
+  - function Person(name, age) {this.name = name; this.age = age;}  
+  - const p = new Person('Mark', 37);   /*  생성자 함수를 이용한 객체 생성  */
 
 선언함수|익명함수|변수=생성자함수|화살표함수|생성자함수
 :---:|:---:|:---:|:---:|:---:
@@ -220,14 +220,14 @@ ___
 ### 클래스 생성 방법
 
 - 선언적 방식
-    - class A {}    
+  - class A {}
 - class 표현식을 변수에 할당
-    - const B = class {};
-- 클래스는 호이스팅이 일어나지 않는다! 
+  - const B = class {};
+- 클래스는 호이스팅이 일어나지 않는다!
 
 ### 생성자 (constructor)
 
-- 클래스를 이용하여 객체를 생성할 때 외부 인자를 넣을 수 있음 
+- 클래스를 이용하여 객체를 생성할 때 외부 인자를 넣을 수 있음
 
 ```javascript
 class C {
@@ -235,7 +235,7 @@ class C {
         console.log('constructor', name, age);
         }
     }
-    
+
 console.log(new C('Mark', 37));   /*    constructor Mark 37    */
 console.log(new C());   /* undefined undefined  */
 ```
@@ -249,7 +249,7 @@ class A {
         this.age = age;
         }
     }
-    
+
     console.log(new A('Mark', 37));  /*  A { name: 'Mark', age: 37 }  */
 
 class B {
@@ -258,11 +258,11 @@ class B {
 }
 
     console.log(new B());  /*  B {name: undefined, age: undefined }  */
-    
+
 class C {
     name = 'no name';
     age = 0;
-    
+
     constructor(name, age) {
         this.name = name;
         this.age = age;
@@ -281,18 +281,18 @@ class A {
     hello1() {
         console.log('hello1',this);
     }
-    
+
     hello2 = () => {
         console.log('hello2',this);
     }
 }
-    
+
 new A().hello1();  /* hello1 A {hello2: [Function: hello2] }  */
 new A().hello2();  /* hello2 A {hello2:  [Function: hello2] }  */
 
 class B {
     name = 'Mark';
-    
+
     hello() {
         console.log('hello', this.name);
     }
@@ -309,11 +309,11 @@ new B().hello();  /*  hello Mark  */
 ```javascript
 class A {
     _name = 'no name';
-    
+
     get name() {
         return this._name + '@@@';
     }
-    
+
     set name(value) {
         this._name = value + '!!!';
     }
@@ -321,7 +321,7 @@ class A {
 
 const a = new A();
 console.log(a);  /* A {_name:'no name'}   */
-a.name = 'Mark';    
+a.name = 'Mark';
 console.log(a); /*  A {_name:'Mark!!!'}   */
 console.log(a.name);    /*  A {_name:'Mark!!!@@@'}   */
 console.log(a._name);   /*  A {_name: Mark!!!}  */
@@ -330,7 +330,7 @@ console.log(a._name);   /*  A {_name: Mark!!!}  */
 
 class B {
     _name = 'no name';
-    
+
     get name() {
         return this._name + '@@@';
     }
@@ -346,7 +346,7 @@ console.log(b)  /*  B {_name: 'no name' } */
 
 - 객체가 아닌, 직접적인 클래스의 변수와 함수
 - 클래스가 붕어빵 틀이라고 하였을 때, static 변수/함수는 틀이 아닌 클래스 자체에 변수/함수
-- 따라서 생성자를 통하여 새로운 객체를 생성하였을 때, undefined 
+- 따라서 생성자를 통하여 새로운 객체를 생성하였을 때, undefined
 - 클래스 내에 호출 시, this가 아닌 클래스명으로 접근해야한다.
 
 ```javascript
@@ -385,7 +385,7 @@ console.log(C); /*  [Function: 이 클래스의 이름은 c가 아니다.]  */
 ```javascript
 class Parent {
     name = 'Lee';
-    
+
     hello() {
         console.log('hello', this.name);
     }
@@ -410,7 +410,7 @@ c.hello();  /*  hello Anna  */
 ```javascript
 class Parent {
     name = 'Lee';
-    
+
     hello() {
         console.log('hello', this.name);
     }
@@ -418,7 +418,7 @@ class Parent {
 
 class Child extends Parent {
     age = 37;
-    
+
     hello() {
         console.log('hello', this.name, this.age);
     }
@@ -441,11 +441,11 @@ c.hello();  /* hello Anna 37    */
 ```javascript
 class Parent {
     name;
-    
+
     constructor(name) {
     this.name = name;
     }
-    
+
     hello() {
         console.log('hello', this.name);
     }
@@ -453,12 +453,12 @@ class Parent {
 
 class Child extends Parent {
     age;
-    
+
     constructor(name, age) {
         super(name);
         this.age = age;
     }
-    
+
     hello() {
         console.log('hello', this.name, this.age);
     }
@@ -467,7 +467,7 @@ class Child extends Parent {
 const p = new Parent('Mark');
 const c = new Child('Mark', 37);
 
-console.log(p, c);  /*  Parent { name : Mark } Child { name : Mark, age : 37 }  */ 
+console.log(p, c);  /*  Parent { name : Mark } Child { name : Mark, age : 37 }  */
 c.hello();  /*  hello Mark 37   */
 ```
 

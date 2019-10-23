@@ -6,23 +6,23 @@
 
 - number : 자바스크립트에서는 소수,정수 모두 숫자형 number
 - syntactic Sugar : 자주 쓰이는 표현을 간략하게
-    - x = x + 1;  => x += 1;
-    - x += 1; => x++;
+  - x = x + 1;  => x += 1;
+  - x += 1; => x++;
 
 - string : 문자형, 자바스크립트에서는 문자열 덧셈은 작동되지만 곱셈은 작동안됨. repeat 함수 활용
 
 - boolean : 논리형, 구문에 참,거짓 판별
 - 표시 기호
-    - and = &&
-    - or = ||
-    - not = !
+  - and = &&
+  - or = ||
+  - not = !
 
 ### 형 변환
 
 - 문자열을 숫자로, 혹은 숫자를 문자로 변환
 - Number("7"), String(7) 로 형변환을 한다.
-    - javascript에서 타입명은 첫번째 글자 대문자로 작성하여야 한다.
-    - window.prompt는 언제나 문자열로 출력하기에 Number()로 결과값을 감쌀때, 활용한다.
+  - javascript에서 타입명은 첫번째 글자 대문자로 작성하여야 한다.
+  - window.prompt는 언제나 문자열로 출력하기에 Number()로 결과값을 감쌀때, 활용한다.
 
 ### 배열 (array)
 
@@ -31,8 +31,8 @@
 - 배열은 typeof에서 object로 확인된다.
 - 내용을 []로 묶어서 저장하며, 배열명[index]로 불러온다.
 - index는 0부터 시작
-    - var ipad = [199, 'black', true];
-    - ipad[2];
+  - var ipad = [199, 'black', true];
+  - ipad[2];
 
 #### 문자열 과 배열
 
@@ -102,9 +102,9 @@ console.log(products[0][1]); /*. imac. */
  ```
 
 - 객체의 명칭
-    - name / age / nationality => name/key
-    - "ABC", 100, "KOREA" => value
-    - name = "ABC", age = 100, nationality = "KOREA" => property
+  - name / age / nationality => name/key
+  - "ABC", 100, "KOREA" => value
+  - name = "ABC", age = 100, nationality = "KOREA" => property
 
 ___
 
@@ -125,7 +125,7 @@ function logTask(task){
 ```
 
 - 함수 작성시 주의사항으로는 형변환 할때 String처럼 대문자 주의
-    - String(a) => 첫글자 대문자 / 괄호 안에 기호 없음
+  - String(a) => 첫글자 대문자 / 괄호 안에 기호 없음
 - 파라미터가 문자열로 자동 변환되는걸 의식하여 함수안에서 형변환을 명시해줄것!
 
 ### return
@@ -147,7 +147,7 @@ console.log(inchToCentimeter(1) + inchToCentimeter(5));   // 15.24
 ```
 
 - 조금 혼동될 수 있는 부분은 inchToCentimeter 함수 안에 변수 centimeter와 함수 호출 시 변수 result1 부분
-    - inchToCentimeter 함수의 결과값을 변수 centimeter에 담고 그것을 변수 result1에 담는다.
+  - inchToCentimeter 함수의 결과값을 변수 centimeter에 담고 그것을 변수 result1에 담는다.
 
 ### 내장함수
 
@@ -163,7 +163,7 @@ console.log(inchToCentimeter(1) + inchToCentimeter(5));   // 15.24
 #### parseInt 함수
 
 숫자와 문자가 섞여 있을 때, 숫자만 꺼내서 반환  
-<span style="color:red">숫자가 앞에 있어야만 제대로 작동</span>
+숫자가 앞에 있어야만 제대로 작동
 
 - parseInt('100세');    /*  100세  */
 - parseInt('세100');    /*  NAN  */ (Not a Number)
@@ -356,7 +356,7 @@ ___
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<script> 
+<script>
 var audioFile = new Audio("https://d34x6xks9kc6p2.cloudfront.net/540997b0-a35f-4b69-86d6-b1c925c4a264/540997b0-a35f-4b69-86d6-b1c925c4a264.mp3");
 
 function playMusic() {
@@ -370,7 +370,7 @@ function stopMusic() {
 
 $('#playBtn').on('click', playMusic);
 $('#stopBtn').on('click', stopMusic);
-</script> 
+</script>
 
 </body>
 </html>
