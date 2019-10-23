@@ -484,3 +484,5 @@ class Child extends Parent {}
 
 console.log(Parent.age, Child.age); /*  37 37   */
 ```
+
+### Promise
