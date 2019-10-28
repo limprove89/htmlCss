@@ -203,7 +203,7 @@ ___
 - 자바스크립트에서 함수는 표준 내장 객체
 - 함수 선언 방법
   - function 함수명(매개변수){실행부분}  /*  선언적 function  */
-  - const hello = function(매개변수){실행부분}    /*  익명함수  */
+  - const hello = function(매개변수){실행부분}    /*  익명함수를 변수에 대입  */
   - const hello = new Function('매개변수','수행부분'); /* 생성자 함수를 변수에 대입  */
   - const hello = (매개변수) => {수행부분};   /* arrow function  */
   - function Person(name, age) {this.name = name; this.age = age;}  
@@ -486,3 +486,50 @@ console.log(Parent.age, Child.age); /*  37 37   */
 ```
 
 ### Promise
+
+- ES6 부터 표준 내장 객체로 추가
+- 생성자로 객체 생성 가능하며 인자로 executor 함수를 이용
+- executor 함수는 resolve, reject를 인자로 갖는다.
+- promise는 세가지 상태를 갖는다.
+- 프로미스 객체가 생성되는 순간 pending(대기) 상태
+- resolve 함수가 실행되면 fulfilled(이행) 상태
+  - 이행되는 순간 코드는 then()으로 넘어감
+  - resolve 함수에 인자를 넣어 실행하면, then(message)의 callback 함수에 인자로 받을 수 있음
+- reject 함수가 실행되면 rejected(거부) 상태
+  - 거부되는 순간 코드는 catch()로 넘어감
+  - reject 함수에 인자를 넣어 실행하면, catch(reason)의 callback 함수의 인자로 받을 수 있음. (error는 주로 reason이 아닌 error객체를 생성하여 넘긴다.)
+- fulfilled되거나 rejected 된 후 최종적으로 실행할 것이 있다면, finally()를 설정하고, 함수를 인자로 넣는다.
+- promise all은 전체가 fulfilled 되었을 때, then 실행
+- promise race는 가장 빠른 하나가r fulfilled 되었을 때, then 실행
+
+> 추천되는 사용방식은 함수의 실행과 동시에 프로미스 객체를 만들면서 pending이 시작하도록 하기 위해서 프로미스 객체를 생성하면서 리턴하는 함수()를 만들어 함수() 실행과 동시에 then을 설정
+
+```javascript
+function p() {
+  return new promise(resolve, reject) => {
+    /* pedding */
+    setTimeout(() => {
+      reject(new Error('bad'));
+    }, 1000);
+  });    
+}
+
+p()
+  .then(message => {
+    console.log('1000ms 후에 fulfilled 됩니다.', message);
+  })
+  .catch(error => {
+    console.log('1000ms 후에 rejected 됩니다.', error);
+  })  
+  .finally(() => {
+    console.log('end');
+  });
+```    
+
+___
+
+### async function / await
+
+- es2017에서 표준으로 지정
+- resolve - then과 같은 맥락 하지만! asyns function안에 await가 담아지도록 하여 사용
+- reject 시에는 try{}catch로 감싸서 처리
