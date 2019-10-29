@@ -375,3 +375,68 @@ $('#stopBtn').on('click', stopMusic);
 </body>
 </html>
 ```
+
+___
+
+## 코드 스타일 가이드
+
+중요하게 지켜나가야 하는 것  
+구글/페이스북/깃허브 등 단체마다의 가이드가 존재
+
+- 띄어쓰기와 줄바꿈
+- 변수 이름을 짓는 규칙
+- 동작은 하지만 쓰지 말아야 할 코드 (레거시 코드)
+- 그 외
+
+### 작명 센스
+
+- 보기에 좋아야 한다. (너무 길거나 너무 부족하지 않게)
+- 이해하기 쉬워야 한다. (ex. boolean => isXxxx)
+- 실수를 유발하지 않아야 한다. (부정적 의미의 변수 이름은 혼동의 여지가 있다.)
+
+___
+
+## 용어 설명
+
+### undefined / null
+
+자바스크립트는 변수의 선언과 초기화를 동시에 하지 않아도 됨
+
+- null: 비어있는 값
+- undefined: 변수에 아무것도 할당 되지 않았을 때의 값
+
+### NaN (Not a Number)
+
+- 숫자가 아닌 것을 숫자로 표현하려 할 때 반환
+
+### true / false
+
+- 숫자
+  - 0은 false
+  - 양수는 true
+  - 음수는 true
+
+- 문자열
+  - 비어있는 문자열은 false
+  - 안 비어있는 문자열은 true
+
+- null / undefined / NaN
+  - null은 false
+  - undefined는 false
+  - NaN는 false
+
+```javascript
+// 응용 x
+if (str !== '') {
+    console.log('str은 빈 문자열이 아닙니다.');
+} else {
+  console.log('str은 빈 문자열입니다.');
+}
+
+// 응용 o
+if (str) {
+  console.log('str은 빈 문자열이 아닙니다.');
+} else {
+  console.log('str은 빈 문자열입니다.');
+}
+```
