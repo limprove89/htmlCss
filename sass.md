@@ -12,3 +12,17 @@ CSS는 상대적으로 low 하며 raw한 문법이다. 프로젝트의 크기가
 - Sass(Syntactically Awesome Style Sheets)의 3버전에서 새롭게 등장한 SCSS는 CSS 구문과 완전히 호환되도록 새로운 구문을 도입해 만든 Sass의 모든 기능을 지원하는 CSS의 상위집합 (Superset)이다.  
 즉, SCSS는 CSS와 거의 같은 문법으로 Sass 기능을 지원한다.
 - 쉽고 간단한 차이는 {} (중괄호)와 ;(세미콜론)의 유무 / Mixins(믹스인) 방식의 차이 등이 있다.
+
+## 컴파일
+
+Sass(SCSS)는 웹에서 직접 동작할 수 없다.  
+컴파일의 과정이 필수이며 대표적인 컴파일러로는
+
+- SassMeister
+  - 실시간 웹 컨파일러  
+  - 사용시 Option에서 Syntax와 Compiler를 설정하고 사용해야 한다.
+
+- Parcel
+
+  - Parcel은 웹 애플리케이션 번들러로 단순하게 컴파일이 가능하다.  
+  - node js 환경에서 사용하므로 npm을 이용하여 설치하고 사용한다.
