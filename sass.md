@@ -115,3 +115,67 @@ Sass는 중첩 기능을 사용할 수 있다.
     margin-right: 0;
 }
 ```
+
+#### @at-root (중첩 벗어나기)
+
+중첩에서 벗어나고 싶을 때 @at-root 키워드를 사용한다.  
+중첩 안에서 생성하되 중첩 밖에서 사용해야 경우에 유용하다.
+
+```SCSS
+.list {
+    $w: 100px;
+    $h: 50px;
+    li {
+        width: $w;
+        height: $h;
+    }
+    @at-root .box {
+        width: $w;
+        height: $h;
+    }
+}
+
+/* compiled to */
+.list li {
+    width: 100px;
+    height: 50px;
+}
+.box {
+    width: 100px;
+    height: 50px;
+}
+
+```
+
+#### 중첩된 속성 정의
+
+font-, margin- 등과 같이 동일한 네임 스페이스를 가지는 속성들을 다음과 같이 사용
+
+```SCSS
+.box {
+    font: {
+        weight: bold;
+        size: 10px;
+        family: sans-serif;
+    };
+    margin: {
+        top: 10px;
+        left: 20px;
+    };
+    padding: {
+        bottom: 40px;
+        right: 30px;
+    };
+}
+
+/* compiled to */
+.box {
+    font-weight: bold;
+    font-size: 10px;
+    font-family: sans-serif;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-bottom: 40px;
+    padding-right: 30px;
+}
+```
