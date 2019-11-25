@@ -511,7 +511,7 @@ function p() {
     setTimeout(() => {
       reject(new Error('bad'));
     }, 1000);
-  });    
+  });
 }
 
 p()
@@ -524,7 +524,7 @@ p()
   .finally(() => {
     console.log('end');
   });
-```    
+```
 
 ___
 
