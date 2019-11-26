@@ -375,3 +375,405 @@ Sass-App
   │  └─main.scss
   # ...
   ```
+
+### 연산
+
+Sass는 기본적인 연산을 지원한다.  
+레이아웃 작업시 상황에 맞게 크기를 계산하거나 정해진 값을 나눠서 작성할 경우 유용하다.
+
+산술 연산자  
+
+종류 | 설명 | 주의사항
+--- | --- | ---
+\+ | 더하기 |
+\- | 빼기 |
+\* | 곱하기 | 하나 이상의 값이 반드시 숫자(Number)
+\/ | 나누기 | 오른쪽 값이 반드시 숫자(Number)
+\% | 나머지 |
+
+비교 연산자
+
+종류 | 설명
+--- | ---
+== | 동등
+!= | 부등
+\< | 대소 / 보다 작은
+\> | 대소 / 보다 큰
+<= | 대소 및 동등 / 보다 작거나 같은
+\>= | 대소 및 동등 / 보다 크거나 같은
+
+논리 연산자
+
+종류 | 설명
+--- | ---
+and | 그리고
+or | 또는
+not | 부정
+
+#### 숫자
+
+##### 상대적 단위 연산
+
+일반적으로 절댓값을 나타내는 px 단위로 연산을 하지만, 상대적 단위(%, em, vw 등)의 연산의 경우 CSS calc()로 연산해야 한다.
+
+```SCSS
+width: 50% - 20px;  // 단위 모순 에러(Incompatible units error)
+width: calc(50% - 20px);  // 연산 가능
+```
+
+##### 나누기 연산의 주의사항
+
+CSS는 속성 값의 숫자를 분리하는 방법으로 /를 허용하기 때문에 /가 나누기 연산으로 사용되지 않을 수 있다. 예를 들어, font: 16px / 22px serif; 는 font-size: 16px과 line-height: 22px의 속성값 분리를 위해 /를 사용한다. 따라서 나누기 연산은 주의사항이 필요하다.
+
+```SCSS
+div {
+    width: 20px + 20px;
+    height: 40px - 10px;
+    font-size: 10px * 2;
+    margin: 30px / 2;
+}
+
+/* compiled to */
+div {
+    width: 40px;
+    height: 30px;
+    font-size: 20px;
+    margin: 30px / 2;
+}
+```
+
+나누기 연산 시 다음 조건을 충족해야 한다.
+
+- 값 또는 그 일부가 변수에 저장되거나 함수에 의해 반환되는 경우
+- 값이 ()로 묶여있는 경우
+- 값이 다른 산술 표현식의 일부로 사용되는 경우
+
+```SCSS
+div {
+    $x: 100px;
+    width: $x /2;
+    height: (100px / 2);
+    font-size: 10px + 12px / 3;
+}
+
+/* compiled to */
+div {
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+}
+```
+
+#### 문자
+
+문자 연산에는 +가 사용된다.  
+문자 연산의 결과는 첫 번째 피연산자를 기준으로 한다.  
+첫번째 피연산자에 ''가 붙으면 전체에 ''를 붙여 출력하며, 첫번째 피연산자에 ''가 없으면 전체에 ''를 처리하지 않고 반환한다.
+
+```SCSS
+div::after {
+    content: "Hello" + world;
+    flex-flow: row + "-reverse" + " " +wrap;
+}
+
+/* compiled to */
+div::after {
+    content: "Hello world";
+    flex-flow: row-reverse wrap;
+}
+```
+
+#### 색상
+
+색상도 연산이 가능 (#는 16진수로 연산/ rgba에서는 alpha값이 같아야 연산 가능)
+
+```SCSS
+div {
+    color: #123456 + #345678;
+    // R : 12 + 34 = 46
+    // G : 34 + 56 = 8a
+    // B : 56 + 78 = ce
+    background: rgba(50, 100, 150, 0.5) + rgba(10, 20, 30, 0.5);
+    // R : 50 + 10 = 60
+    // G : 100 + 20 = 120
+    // B : 150 + 30 = 180
+    // A : Alpha channels must be equal
+}
+
+/*compiled to */
+div {
+    color : #468ace;
+    background: rgba(60, 120, 180, 0.5);
+}
+```
+
+RGBA에서 Alpha값(투명도)의 값이 동일하여야 연산 가능하며, 연산을 하여야 하는 경우에는 opacify(), transparentize() 함수를 사용하여 연산 가능하다.
+
+#### 논리
+
+Sass의 @if 조건문에서 사용되는 논리(Boolean) 연산에는 '그리고', '또는', '부정'이 있다.  
+종류 | 설명
+--- | ---
+and | 그리고
+or | 또는
+not | 부정(반대)
+
+```SCSS
+$w: 100px;
+.item {
+    display: block;
+    @if ($w > 50px and $w > 90px) {
+        width: 400px;
+    }
+}
+
+/* compiled to */
+.item {
+    display: block;
+    width: 400px;
+}
+```
+
+### 재활용 (Mixins)
+
+Sass Mixins은 재사용 할 CSS 선언 그룹을 정의하는 기능이다.
+선언하기(@mixin)과 포함하기(@include)로 만들(선언)고, 사용(포함)한다.
+
+```SCSS
+// SCSS
+@mixin 믹스인이름 {
+    스타일;
+}
+
+@include 믹스인이름;
+
+// Sass
+=믹스인이름
+    스타일
+
++믹스인이름
+
+// 예시
+@mixin size ($w: 100px, $h: 100px) {
+    width: $w;
+    height: $h;
+}
+
+.box1 {
+    @include size;
+}
+.box2 {
+    @include size($h: 300px);
+}
+.box3 {
+    @include size;
+}
+
+/* compiled to */
+.box1 {
+    width: 100px;
+    height: 100px;
+}
+.box2 {
+    width: 100px;
+    height: 300px;
+}
+.box3 {
+    width: 100px;
+    height: 100px;
+}
+```
+
+Mixin은 선택자를 포함하고, 상위(부모) 요소 참조(&) 가능하다.
+
+#### 인수(Arguments)
+
+Mixin은 함수처럼 인수를 가질 수 있다.  
+
+- 매개변수(Parameters) : 값이 들어가는 위치
+- 인수(Arguments) : 대입되는 값
+
+```SCSS
+// SCSS
+@mixin 믹스인이름($매개변수) {
+    스타일;
+}
+@include 믹스인이름(인수);
+
+//Sass
+=믹스인이름($매개변수)
+    스타일
+
++믹스인이름(인수)
+
+// 예시
+@mixin dash-line($width, $color) {
+    border: $width dashed $color;
+}
+
+.box1 {@include dash-line(1px, red);}
+.box2 {@include dash-line(4px, blue);}
+
+/* compiled to */
+.box1 {
+    border: 1px dashed red;
+}
+.box2 {
+    border: 4px dashed blue;
+}
+```
+
+##### 인수의 기본값 설정
+
+인수(argument)는 기본값을 가질 수 있다.  
+@include 포함 단계에서 별도의 인수가 전달되지 않으면 기본값이 사용된다.
+
+```SCSS
+@mixin 믹스인이름($매개변수: 기본값) {
+    스타일;
+}
+
+@mixin dash-line($width: 1px, $color: black) {
+    border: $width dashed $color;
+}
+
+.box1 {@include dash-line;}
+.box2 {@include dash-line(4px);}
+
+/* compiled to */
+.box1 {
+    border: 1px dashed black;
+}
+.box2 {
+    border: 4px dashed black;
+}
+```
+
+##### 키워드 인수
+
+Mixin에 전달할 인수를 입력할 때 명시적으로 키워드명을 입력하여 작성가능하다.  
+인수는 기본적으로 순서대로 대입되므로, 앞에 인수를 기본값으로 적용할 때 사용한다.
+
+```SCSS
+@mixin 믹스인이름($매개변수A: 기본값, $매개변수B: 기본값) {
+    스타일;
+}
+
+@include 믹스인이름($매개변수B: 인수);
+```
+
+##### 가변 인수
+
+입력할 인수의 개수가 불확실한 경우 가변 인수를 활용한다.  
+가변 인수는 매개변수 뒤에 ...을 붙여주며, 마지막 매개변수가 그 값을 다 안는다.
+
+```SCSS
+@mixin 믹스인이름($매개변수...){
+    스타일;
+}
+
+@include 믹스인이름(인수A, 인수B, 인수C);
+
+// 예시
+@mixin var ($w, $h, $bg...) {
+    width: $w;
+    height: $h;
+    background: $bg;
+}
+
+.box {
+    @include var(
+        100px,
+        200px,
+        url("image/a.png") no-repeat 10px 20px,
+        url("image/b.png") no-repeat,
+        url("image/c.png")
+    );
+}
+
+/* compiled to */
+.box {
+    width: 100px;
+    height: 200px;
+    background: url("image/a.png") no-repeat 10px 20px, url("image/b.png") no-repeat, url("image/c.png")
+}
+```
+
+##### @content
+
+선언된 Mixin에 @content가 포함되어 있다면 해당 부분에 원하는 스타일 블록을 전달할 수 있다. 이로 인해 기존 Mixin이 가지고 있는 기능에 선택자나 속성을 추가할 수 있다.
+
+```SCSS
+@mixin 믹스인이름() {
+    스타일;
+    @content;
+}
+
+@include 믹스인이름() {
+    // 스타일 블록
+    스타일;
+}
+
+// 예시
+@mixin icon($url) {
+    $::after {
+        content: $url;
+        @content;
+    }
+}
+
+.box1 {
+    @include icon("image/icon1.png");
+}
+.box2 {
+    @include icon("image/icon2.png") {
+        display: block;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+    };
+}
+
+/* compiled to */
+.box1::after {
+    content: "image/icon1.png";
+}
+.box2::after {
+    content: "image/icon2.png";
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+```
+
+### 확장(Extend)
+
+특정 선택자가 다른 선택자의 모든 스타일을 가져야 하는 경우 선택자의 확장기능을 통하여 가져올 수 있다.
+
+```SCSS
+@extend 선택자;
+
+// 예시
+.btn {
+    padding: 10px;
+    margin: 10px;
+    background: blue;
+}
+.btn-danger {
+    @extend .btn;
+    background: red;
+}
+
+/* compiled to */
+.btn .btn-danger {
+    padding: 10px;
+    margin: 10px;
+    background: blue;
+}
+.btn-danger {
+    background: red;
+}
+```
+
+> 확장은 원치 않는 선택자로 반환될 가능성이 크기에 사용을 권장하지 않는다. Mixin으로 대체하여 사용한다!
